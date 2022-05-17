@@ -51,7 +51,7 @@ class _FacedectionState extends State<Facedection> {
     // await vioice.setVoice({"name": "Karen", "locale": "en-AU"});
     await tts.setPitch(1.5);
     await tts.setSpeechRate(0.2);
-    await tts.speak(text);
+    await tts.speak("There is $text person");
 
   }
 
@@ -136,7 +136,7 @@ class _FacedectionState extends State<Facedection> {
                     ),
                     lengthoflist==null?const CircularProgressIndicator():Container(
                       margin: EdgeInsets.only(top: 25),
-                      child: Text(lengthoflist.toString(),style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+                      child: Text("There is ${lengthoflist.toString()} person",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                     )
                     
             ],

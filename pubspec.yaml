@@ -40,6 +40,11 @@ dependencies:
   flutter_tts: ^3.3.3
   animated_splash_screen: ^1.2.0
   path_provider: ^2.0.9
+  # speech_to_text: ^5.4.3
+  avatar_glow: ^2.0.2
+  google_fonts: ^2.3.2
+  shared_preferences: ^2.0.15
+  introduction_screen: ^3.0.2
   
 
 dev_dependencies:

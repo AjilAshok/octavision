@@ -5,6 +5,7 @@ import 'package:octavision/barcode/barcodecamera.dart';
 import 'package:octavision/facedetction/facedectioncamera.dart';
 import 'package:octavision/imagelabeling/imagelabelecamera.dart';
 import 'package:octavision/objectdetection/objectdetectioncam.dart';
+import 'package:octavision/speechtotext/speechtotext.dart';
 import 'package:octavision/textrecognise/textrecoginisecam.dart';
 
 class Home extends StatelessWidget {
@@ -14,10 +15,12 @@ class Home extends StatelessWidget {
     'https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2VsJ_K6UUA2TOdu83uoDem5ulpvDiIXzbvA&usqp=CAU',
     'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif',
-    'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif'
+    // 'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif',
+    // 'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif'
+
     
   ];
-  List navigator = [Camerabarcode(),Imagelabel_camera(),TextCam(),Facedetction_camera(),Objectdectioncam()];
+  List navigator = [Camerabarcode(),Imagelabel_camera(),TextCam(),Facedetction_camera(),Objectdectioncam(),];
 
   @override
   Widget build(BuildContext context) {
