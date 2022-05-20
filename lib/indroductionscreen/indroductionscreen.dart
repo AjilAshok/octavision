@@ -18,22 +18,22 @@ class OnborderingScreen extends StatelessWidget {
          baseBtnStyle:ButtonStyle(backgroundColor:MaterialStateProperty.all(Colors.white,),) ,
           pages: [
             PageViewModel(
-              title: "dfkldsjfldskjf",
-              body: "etetdoihgiodhg",
+              title: "A Soul for Visually Impared ",
+              body: "World's First Initiative for blind people",
               decoration: getpagedecor()
      
      
             ),
              PageViewModel(
-              title: "ey58p93257345",
-              body: "ejtioewht",
+              title: "Control Through Voice ",
+              body: "Automate Your life through artificial intelligence",
               decoration: getpagedecor()
      
      
             ),
             PageViewModel(
-              title: "ey58p93257345",
-              body: "ejtioewht",
+              title: "You are about to enter into an era of Ai",
+              body: "Go ON!",
               decoration: getpagedecor()
      
      

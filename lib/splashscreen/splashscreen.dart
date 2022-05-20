@@ -66,9 +66,9 @@ class _SplashscreenState extends State<Splashscreen> {
   speack()async{
    print(await voicetest.getVoices);
      await voicetest.setLanguage("en-US");
-    await voicetest.setVoice({"name": "en-gb-x-gba-local", "locale": "en-GB"});
-    await voicetest.setPitch(1.5);
-    await voicetest.setSpeechRate(0.2);
-    await voicetest.speak("Soul of Octhaa  vision");
+    // await voicetest.setVoice({"name": "en-gb-x-gba-local", "locale": "en-GB"});
+    await voicetest.setPitch(1);
+    await voicetest.setSpeechRate(0.3);
+    await voicetest.speak("Welcome,, to Octtaaaa  vission.");
   }
 }
