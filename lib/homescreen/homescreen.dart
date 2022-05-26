@@ -1,15 +1,21 @@
 import 'dart:ui';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:octavision/barcode/barcodecamera.dart';
+import 'package:octavision/currencydetection/currencycamer.dart';
 import 'package:octavision/facedetction/facedectioncamera.dart';
 import 'package:octavision/homescreen/widgets/appbarscreen.dart';
 import 'package:octavision/homescreen/widgets/howescreenimagesicon.dart';
 import 'package:octavision/imagelabeling/imagelabelecamera.dart';
+import 'package:octavision/languagetranslation/translation.dart';
 import 'package:octavision/objectdetection/objectdetectioncam.dart';
 import 'package:octavision/speechtotext/speechtotext.dart';
 import 'package:octavision/textrecognise/textrecoginisecam.dart';
+import 'package:wave/config.dart';
+import 'package:wave/wave.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -18,32 +24,56 @@ class Home extends StatelessWidget {
     'https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2VsJ_K6UUA2TOdu83uoDem5ulpvDiIXzbvA&usqp=CAU',
     'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif',
-    // 'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif',
-    // 'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif'
+    'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif',
+    'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif',
+    'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif'
   ];
   List textes = [
+    "Object Detection",
+    "Text Recoganisation",
+    "Language Translation",
+    "Currency Detection",
+    "Face Detection",
     "Barcode",
     "Image Label",
-    "Text Recoginsise",
-    "Face Detection"
+    
+   
+    
+    
   ];
   List navigator = [
-    Camerabarcode(),
-    Imagelabel_camera(),
-    TextCam(),
-    Facedetction_camera(),
-    Objectdectioncam(),
+    const Objectdectioncam(),
+    const TextCam(),
+    const Translationmodel(),
+    const Currencydection(),
+    const Facedetction_camera(),
+    const Camerabarcode(),
+    const Imagelabel_camera(),
+    
+   
+    
+    
+    
+    // const SpeechToText()
   ];
   List colorse = [
-    Color(0xFFD76C9C),
-    Color(0xff7C4AA7),
-    Color(0xFF140A27),
-    Colors.indigo
+    const Color(0xFFD76C9C),
+    const Color(0xff7C4AA7),
+    const Color.fromARGB(255, 47, 23, 92),
+    Colors.indigo,
+    const Color.fromARGB(255, 28, 97, 103),
+    Colors.purple,
+    Color.fromARGB(255, 221, 119, 17)
+    // Colors.lightGreen
+    
   ];
   List conter = [
-    Color(0xff7C4AA7),
-    Color(0xFF140A27),
+    const Color(0xff7C4AA7),
+    const Color.fromARGB(255, 47, 23, 92),
     Colors.indigo,
+    const Color.fromARGB(255, 28, 97, 103),
+    Colors.purple,
+    Color.fromARGB(255, 221, 119, 17),
     Colors.white,
   ];
 
@@ -53,156 +83,138 @@ class Home extends StatelessWidget {
       child: Scaffold(
           backgroundColor: Colors.white,
           body: NestedScrollView(
-              floatHeaderSlivers: true,
+            physics: NeverScrollableScrollPhysics(),
+            
+
+              floatHeaderSlivers: false,
               headerSliverBuilder: ((context, innerBoxIsScrolled) => [
                     SliverAppBar(
                       //  floating: true,
 
-                      toolbarHeight: 150,
-                      backgroundColor: Color(0xFFD76C9C),
+                      toolbarHeight: 130,
+                      backgroundColor: Colors.white,
                       flexibleSpace: ClipPath(
-                          clipper: Customsphape(),
+                          // clipper: Customsphape(),
                           child: Container(
-                            height: 200,
-                            color: Colors.white,
-                            child: Center(
-                              child: Text(
-                                "Soul",
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 30,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 10),
-                              ),
-                            ),
-                          )),
+                        height: 200,
+                        color: Colors.white,
+                        child: Center(
+                          child: Text(
+                            "Soul",
+                            style: GoogleFonts.montserrat(
+                                fontSize: 30,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 10),
+                          ),
+                        ),
+                      )),
                     )
                   ]),
-              body: NotificationListener<OverscrollIndicatorNotification>(
+              body: 
+              NotificationListener<OverscrollIndicatorNotification>(
                 onNotification: (OverscrollIndicatorNotification notification) {
                   notification.disallowIndicator();
                   return true;
                 },
-                child: Column(
-                  children: [
-                    Flexible(
-                      child: ListView.builder(
-                        itemCount: textes.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => navigator[index],
-                                  ));
-                            },
-                            child: Stack(
-                              children: [
-                                // Container(
-                                //   height:
-                                //       MediaQuery.of(context).size.height * 0.2,
-                                //   color: Colors.red,
-                                // ),
-                                Container(
-                                  padding:const EdgeInsets.all(0),
-                                  decoration: BoxDecoration(
-                                    // border: Border.all(color: Colors.green),
-                                    color: conter[index],
+                child:
+                 SingleChildScrollView(
+                  //  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      WaveWidget(
+                          waveFrequency: 2,
+                          config: CustomConfig(gradients: [
+                            [
+                              Color.fromARGB(255, 28, 115, 31),
+                              Color.fromARGB(255, 3, 68, 36)
+                            ],
+                            [
+                              Color(0xFFD76C9C),
+                              Color.fromARGB(255, 47, 23, 92)
+                            ],
+                            [Colors.indigo, Color(0xff7C4AA7)],
+                            [Colors.redAccent, Colors.pinkAccent],
+                            [
+                              Color(0xFFD76C9C),
+                              Color.fromARGB(255, 201, 35, 91)
+                            ],
+                          ], durations: [
+                            3500,
+                            19440,
+                            10800,
+                            6000,
+                            7500
+                          ], heightPercentages: [
+                            0.20,
+                            0.23,
+                            0.25,
+                            0.30,
+                            0.33
+                          ]),
+                          size: Size(double.infinity, 100)),
+                      Flexible(
+                        flex: 0,
+                       
+                        child:
+                         ListView.builder(
+                          
+                          shrinkWrap: true,
+                         
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: textes.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => navigator[index],
+                                    ));
+                              },
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    
+                                    width: double.infinity,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.2,
+                                  
+                                    decoration: BoxDecoration(
+                                        color: conter[index],
+                                        border: Border.all(
+                                            width: 0, color: colorse[index])),
                                   ),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.2,
-                                ),
-                                Container(
-                                 
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.2,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                      // border: Border.all(
-                                      //     width: 1.5, color: Colors.red),
-                                      color: colorse[index],
-                                      borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(100))),
-                                  child: Padding(
-                                      padding: const EdgeInsets.all(30),
-                                      child: HomeIcons(
-                                        index: index,
-                                        names: textes,
-                                        logimage: images,
-                                        
-                                      )
-                                      //  Row(
-                                      //   children: [
-                                      //     Text(
-                                      //       textes[index],
-                                      //       style: GoogleFonts.montserrat(
-                                      //           color: Colors.white, fontSize: 23,fontWeight: FontWeight.bold),
-                                      //     ),
-                                      //   ],
-                                      // ),
-                                      ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                                  Container(
+                                    padding: const EdgeInsets.only(bottom: 0),
+                                    margin: const EdgeInsets.only(bottom: 0),
+                                    height: MediaQuery.of(context).size.height *
+                                        0.2,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 0, color: colorse[index]),
+                                        color: colorse[index],
+                                        borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(100))),
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(30),
+                                        child: HomeIcons(
+                                          index: index,
+                                          names: textes,
+                                          logimage: images,
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-
-              // Padding(
-              //   padding: const EdgeInsets.only(
-              //     top: 20,
-              //     left: 10,
-              //     right: 10,
-              //   ),
-              //   child: GridView.builder(
-              //       itemCount: images.length,
-              //       gridDelegate:
-              //           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              //       itemBuilder: (context, index) {
-              //         return GestureDetector(
-              //           onTap: () {
-              //             Navigator.push(
-              //                 context,
-              //                 MaterialPageRoute(
-              //                   builder: (context) => navigator[index],
-              //                 ));
-              //           },
-              //           child:
-              //           Container(
-              //             margin: EdgeInsets.all(10),
-              //             child: Image.network(
-              //               images[index],
-              //               fit: BoxFit.fill,
-              //             ),
-              //             padding: EdgeInsets.all(20),
-              //             decoration: BoxDecoration(
-              //                 color: Colors.grey[200],
-              //                 borderRadius: BorderRadius.circular(40),
-              //                 boxShadow: [
-              //                   // bottom right shadow is darker
-              //                   const BoxShadow(
-              //                       color: Colors.black,
-              //                       offset: Offset(5, 5),
-              //                       blurRadius: 15,
-              //                       spreadRadius: 1),
-              //                   // top left shadow lighter
-              //                   BoxShadow(
-              //                       color: Colors.grey.shade500,
-              //                       offset: Offset(-5, -5),
-              //                       blurRadius: 15,
-              //                       spreadRadius: 1)
-              //                 ]
-              // ),
-              //           ),
-              //         );
-              //       }),
-              // ),
-              )),
+                    ],
+                  ),
+                              ),
+                ))),
     );
   }
 }

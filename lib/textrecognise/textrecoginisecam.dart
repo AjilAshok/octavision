@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:octavision/barcode/barcoderesult.dart';
 import 'package:octavision/main.dart';
+import 'package:octavision/speack.dart';
 import 'package:octavision/textrecognise/textresult.dart';
 
 class TextCam extends StatefulWidget {
@@ -13,6 +13,8 @@ class TextCam extends StatefulWidget {
 
 
 class _CameraviewState extends State<TextCam> {
+  final textvoice=Voicespeeech();
+  String textspeech="Text recoganisation";
   late final CameraController _controller;
   void _initializeCamera() async {
     final CameraController cameraController = CameraController(
@@ -62,6 +64,8 @@ class _CameraviewState extends State<TextCam> {
   void initState() {
     // TODO: implement initState
     _initializeCamera();
+    textvoice.speack(textspeech);
+
     super.initState();
   }
   @override
@@ -69,6 +73,7 @@ class _CameraviewState extends State<TextCam> {
     // TODO: implement dispose
     super.dispose();
     _controller.dispose();
+    textvoice.speackvoice.stop();
   }
   @override
   

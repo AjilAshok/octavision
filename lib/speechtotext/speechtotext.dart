@@ -1,79 +1,89 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/src/foundation/key.dart';
-// import 'package:flutter/src/widgets/framework.dart';
-// import 'package:flutter/widgets.dart';
-// // import 'package:speech_to_text/speech_to_text.dart' as sst;
+import 'package:avatar_glow/avatar_glow.dart';
+import 'package:flutter/material.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
-// class Speech extends StatefulWidget {
-//   const Speech({Key? key}) : super(key: key);
+class SpeechToText extends StatefulWidget {
+  const SpeechToText({Key? key}) : super(key: key);
 
+  @override
+  State<SpeechToText> createState() => _SpeechToTextState();
+}
 
-//   @override
-//   State<Speech> createState() => _SpeechState();
-// }
+class _SpeechToTextState extends State<SpeechToText> {
+  stt.SpeechToText _speech = stt.SpeechToText();
+  bool _isListen = false;
+  String displaytext = "Press the button to speack";
+  void _startListening() async {
+    await _speech.listen(
+        listenMode: stt.ListenMode.confirmation,
+        sampleRate: 100,
+        listenFor: const Duration(minutes: 60),
+        pauseFor: const Duration(seconds: 240),
+        onResult: _onSpeechResult);
+    setState(() {});
+  }
 
-// class _SpeechState extends State<Speech> {
-//   bool listen=false;
-//   String text="Press button to speak";
-//   sst.SpeechToText? _speechToText;
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     _speechToText=sst.SpeechToText();
-//     super.initState();
-//   }
-  
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         appBar: AppBar(
-//           title: Text("Speech To Text"),
+  initstates() async {
+    _isListen = await _speech.initialize();
+    setState(() {});
+  }
 
-//           elevation: 0,
-//           backgroundColor: Colors.black,
-//         ),
-//         body: Padding(
-//           padding: const EdgeInsets.all(10.0),
-//           child: Column(
-//             children: [
-//               Text(text,style: TextStyle(fontSize: 25),)
-//             ],
+  void _onSpeechResult(SpeechRecognitionResult result) {
+    setState(() {
+      displaytext = result.recognizedWords;
+    });
+  }
 
-//           ),
-//         ),
-//         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-//         floatingActionButton: FloatingActionButton(onPressed:listeee,
-//         child: Icon(listen?Icons.mic:Icons.mic_none),
-//       ),
-//     ));
-    
-//   }
-//   void listeee()async{
-//     if(!listen){
-//       bool available=  await _speechToText!.initialize(
-//         onStatus: (val)=> print(val),
-//         onError: (va)=>print(va)
+  void _stopListening() async {
+    await _speech.stop();
+    setState(() {
+      //  islisten=false;
+    });
+  }
 
-//       );
-//       if(available){
-//         setState(() {
-//           listen=true;
-//         });
-//         _speechToText!.listen(
-//           onResult: (value)=>setState(() {
-//             text=value.recognizedWords;
-            
-//           })
-//         );
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initstates();
+  }
 
-//       }
-
-//     }else{
-//       setState(() {
-//         listen=false;
-//         _speechToText!.stop();
-//       });
-//     }
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title:const Text("Speech to Text",style: TextStyle(color: Colors.white),),
+            backgroundColor: Colors.black,
+          ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: AvatarGlow(
+        animate: _speech.isListening,
+        glowColor: Colors.red,
+        duration: Duration(milliseconds: 2000),
+        repeatPauseDuration: Duration(milliseconds: 100),
+        repeat: true,
+        endRadius: 80,
+        child: FloatingActionButton(
+          onPressed: () {
+            _speech.isNotListening ? _startListening() : _stopListening();
+          },
+          child: Icon(_speech.isNotListening ? Icons.mic: Icons.mic_none,color: Colors.black,),
+        ),
+      ),
+      body: SingleChildScrollView(
+        reverse: true,
+        child: Container(
+          padding: const EdgeInsets.all(50),
+          child: Text(
+            displaytext,
+            overflow: TextOverflow.clip,
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
+          ),
+        ),
+      ),
+    ));
+  }
+}

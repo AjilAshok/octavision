@@ -1,129 +1,102 @@
-import 'package:camera/camera.dart';
+// import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:octavision/barcode/barcoderesult.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+// import 'package:octavision/barcode/barcoderesult.dart';
 import 'package:octavision/main.dart';
-
-class Camerabarcode extends StatefulWidget {
-  const Camerabarcode({ Key? key }) : super(key: key);
-
-  @override
-  State<Camerabarcode> createState() => _CameraviewState();
-}
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:octavision/speack.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 
-class _CameraviewState extends State<Camerabarcode> {
-  late final CameraController _controller;
-  void _initializeCamera() async {
-    final CameraController cameraController = CameraController(
-      cameras[0],
-      ResolutionPreset.high,
-    );
-    _controller = cameraController;
-  
-    _controller.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    });
-  }
-   Future<String?> _takePicture() async {
-    if (!_controller.value.isInitialized) {
-      print("Controller is not initialized");
-      return null;
-    }
-  
-    String? imagePath;
-  
-    if (_controller.value.isTakingPicture) {
-      print("Processing is progress ...");
-      return null;
-    }
-  
-    try {
-        
-      // Turning off the camera flash
-      _controller.setFlashMode(FlashMode.off);
-        
-      // Returns the image in cross-platform file abstraction
-      final XFile file = await _controller.takePicture();
-        
-      // Retrieving the path
-      imagePath = file.path;
-    } on CameraException catch (e) {
-      print("Camera Exception: $e");
-      return null;
-    }
-  
-    return imagePath;
-  }
-  @override
-  void initState() {
-    // TODO: implement initState
-    _initializeCamera();
-    super.initState();
-  }
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    _controller.dispose();
-  }
-  @override
-  
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title:const Text("Barcode Scanner"),),
-      body: _controller.value.isInitialized
-          ? Stack(
-              children: [
-                CameraPreview(_controller),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    alignment: Alignment.bottomCenter,
-                    child: ElevatedButton.icon(
-                      style: ButtonStyle(backgroundColor:MaterialStateProperty.all(Colors.black)),
-                      icon: Icon(Icons.camera,color: Colors.white,),
-                      label: Text("Click"),
-                      onPressed: () async {
-                          
-                        // If the returned path is not null navigate
-                        // to the DetailScreen
-                        await _takePicture().then((String? path) {
-                          if (path != null) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Barcode_scanner(
-                                  imagePath: path,
-                                ),
-                              ),
-                            );
-                          } else {
-                            print('Image path not found!');
-                          }
-                        });
-                      },
-                    ),
-                  ),
-                )
-              ],
-            )
-          : Container(
-              color: Colors.black,
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-    );
-  }
       
     
   
   
 
+
+class Camerabarcode extends StatefulWidget {
+  const Camerabarcode({Key? key}) : super(key: key);
+  
+
+  @override
+  State<Camerabarcode> createState() => _CamerabarcodeState();
+}
+
+class _CamerabarcodeState extends State<Camerabarcode> {
+  final FlutterTts barcodevoice=FlutterTts();
+  final obj= Voicespeeech();
+  String barcodespecch="Barcode";
+  String result='';
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    
+    obj.speackvoice.stop();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    scanQR();
+    obj.speack(barcodespecch);
+    
+
+
+  }
+  
+
+  
+  Future<void> scanQR() async {
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666',"Cancel", false, ScanMode.QR);
+      print(barcodeScanRes);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      result = barcodeScanRes;
+      laughurls(result);
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    // scanQR();
+    
+    return SafeArea(child: Scaffold(
+      appBar:AppBar(
+        // leading: ,
+        backgroundColor: Colors.black,
+        title:const Text("Barcode Scanner"),), 
+        
+        body:const Center(
+          child: CircularProgressIndicator(
+
+          )
+
+        )));
+    
+  }
+  laughurls(String url) async {
+    // var url=Uri.parse(url);
+    if (await canLaunchUrlString(url)) {
+     await launchUrlString(url);
+    } else {
+      throw 'Not find';
+    }
+  }
+ 
 }

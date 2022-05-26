@@ -27,7 +27,7 @@ class HomeIcons extends StatelessWidget {
               color: Colors.white, fontSize: 23, fontWeight: FontWeight.bold),
         ),
         Container(
-          margin: EdgeInsets.only(top: 60),
+          margin:const EdgeInsets.only(top: 60),
           child: CircleAvatar(
             radius: 40,
             backgroundImage:NetworkImage(logimage[index] ) ,

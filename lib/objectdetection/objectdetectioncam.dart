@@ -1,6 +1,5 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:octavision/barcode/barcoderesult.dart';
 import 'package:octavision/facedetction/facedectionresult.dart';
 import 'package:octavision/main.dart';
 import 'package:octavision/objectdetection/objectdecresult.dart';
@@ -78,7 +77,7 @@ class _CameraviewState extends State<Objectdectioncam> {
       // backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Face Detection"),),
+        title: Text("Object Detection"),),
       body: _controller.value.isInitialized
           ? Stack(
               children: [

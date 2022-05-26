@@ -20,7 +20,7 @@ class TextreconiseResult extends StatefulWidget {
 class _TextreconiseResultState extends State<TextreconiseResult> {
   late final String _imagePath;
   final FlutterTts vioice=FlutterTts();
-  final barcodeScanner = GoogleMlKit.vision.textRecognizer();
+  final textrec = GoogleMlKit.vision.textRecognizer();
 
   Size? _imageSize;
 
@@ -49,9 +49,10 @@ class _TextreconiseResultState extends State<TextreconiseResult> {
     _getImageSize(File(_imagePath));
     final inputImage = InputImage.fromFilePath(_imagePath);
     final RecognizedText textex =
-        await barcodeScanner.processImage(inputImage);
+        await textrec.processImage(inputImage);
         setState(() {
           barcoderesult=textex.text;
+          
           if(barcoderesult.isNotEmpty){
              speak(text: barcoderesult);
 
@@ -60,7 +61,7 @@ class _TextreconiseResultState extends State<TextreconiseResult> {
           }
          
         });
-
+       
   
 
 
@@ -88,7 +89,7 @@ class _TextreconiseResultState extends State<TextreconiseResult> {
   @override
   void dispose() {
     // Disposing the imageLabeler when not used anymore
-    barcodeScanner.close();
+    textrec.close();
     vioice.stop();
     
     super.dispose();
@@ -165,12 +166,5 @@ class _TextreconiseResultState extends State<TextreconiseResult> {
     );
   }
 
-  laughurls(String url) async {
-    // var url=Uri.parse(url);
-    if (await canLaunchUrlString(url)) {
-     await launchUrlString(url);
-    } else {
-      throw 'Not find';
-    }
-  }
+  
 }

@@ -1,8 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:octavision/barcode/barcoderesult.dart';
+
 import 'package:octavision/imagelabeling/imagelabelresult.dart';
 import 'package:octavision/main.dart';
+import 'package:octavision/speack.dart';
 
 class Imagelabel_camera extends StatefulWidget {
   const Imagelabel_camera({ Key? key }) : super(key: key);
@@ -13,6 +14,8 @@ class Imagelabel_camera extends StatefulWidget {
 
 
 class _CameraviewState extends State<Imagelabel_camera> {
+  final imagespech=Voicespeeech();
+  String imagelablevoice="Image Label";
   late final CameraController _controller;
   void _initializeCamera() async {
     final CameraController cameraController = CameraController(
@@ -62,6 +65,7 @@ class _CameraviewState extends State<Imagelabel_camera> {
   void initState() {
     // TODO: implement initState
     _initializeCamera();
+    imagespech.speack(imagelablevoice);
     super.initState();
   }
   @override
@@ -69,6 +73,7 @@ class _CameraviewState extends State<Imagelabel_camera> {
     // TODO: implement dispose
     super.dispose();
     _controller.dispose();
+    imagespech.speackvoice.stop();
   }
   @override
   

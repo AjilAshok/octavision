@@ -58,6 +58,7 @@ class _ObjectdectionState extends State<Objectdection> {
         await _objectDetector.processImage(inputImage);
         for (DetectedObject obje in objeresult ) {
           for (Label label in obje.labels) {
+            print(label.text);
             setState(() {
                 print("888888888888888888888888888888888888888888888");
               print(label.text);
@@ -110,6 +111,7 @@ class _ObjectdectionState extends State<Objectdection> {
     const path='assets/object_labeler.tflite';
     final modelpath=await _getModel(path);
     final options = LocalObjectDetectorOptions(
+      mode: DetectionMode.singleImage,
       modelPath: modelpath,
       classifyObjects: true,
       multipleObjects: true,

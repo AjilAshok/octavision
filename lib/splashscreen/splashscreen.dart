@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:octavision/bottomnavbar/bottomnav.dart';
 import 'package:octavision/homescreen/homescreen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:octavision/indroductionscreen/indroductionscreen.dart';
@@ -19,6 +20,7 @@ class Splashscreen extends StatefulWidget {
 
 class _SplashscreenState extends State<Splashscreen> {
    final FlutterTts voicetest=FlutterTts();
+   String welcomevoice="Welcome,, to Octtaaaa  vission.";
   //  bool visible=false;
   
   @override
@@ -44,7 +46,7 @@ class _SplashscreenState extends State<Splashscreen> {
                             "assets/WhatsApp Image 2022-05-13 at 3.22.03 PM.jpeg"),
                         fit: BoxFit.cover)),
               ),
-              nextScreen:initScreen==0||initScreen==null?OnborderingScreen():Home(),
+              nextScreen:initScreen==0||initScreen==null?OnborderingScreen():BottomNav(),
               //  Splashscreen(),
               // Home(),
               // OnborderingScreen(),
@@ -69,6 +71,6 @@ class _SplashscreenState extends State<Splashscreen> {
     // await voicetest.setVoice({"name": "en-gb-x-gba-local", "locale": "en-GB"});
     await voicetest.setPitch(1);
     await voicetest.setSpeechRate(0.3);
-    await voicetest.speak("Welcome,, to Octtaaaa  vission.");
+    await voicetest.speak(welcomevoice);
   }
 }

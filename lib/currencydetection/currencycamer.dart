@@ -1,21 +1,21 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:octavision/currencydetection/displayscreen.dart';
 import 'package:octavision/facedetction/facedectionresult.dart';
 import 'package:octavision/main.dart';
 import 'package:octavision/speack.dart';
 
-class Facedetction_camera extends StatefulWidget {
-   const Facedetction_camera({ Key? key, }) : super(key: key);
-  
+class Currencydection extends StatefulWidget {
+  const Currencydection({ Key? key }) : super(key: key);
 
   @override
-  State<Facedetction_camera> createState() => _CameraviewState();
+  State<Currencydection> createState() => _CameraviewState();
 }
 
 
-class _CameraviewState extends State<Facedetction_camera> {
-  final facevoice=Voicespeeech();
-  String facespeech='Face detection';
+class _CameraviewState extends State<Currencydection> {
+  final currcenyvoice=Voicespeeech();
+  String facespeech='Currency detection';
   late final CameraController _controller;
   void _initializeCamera() async {
     final CameraController cameraController = CameraController(
@@ -65,7 +65,7 @@ class _CameraviewState extends State<Facedetction_camera> {
   void initState() {
     // TODO: implement initState
     _initializeCamera();
-    facevoice.speack(facespeech);
+    currcenyvoice.speack(facespeech);
     super.initState();
   }
   @override
@@ -73,7 +73,7 @@ class _CameraviewState extends State<Facedetction_camera> {
     // TODO: implement dispose
     super.dispose();
     _controller.dispose();
-    facevoice.speackvoice.stop();
+    currcenyvoice.speackvoice.stop();
   }
   @override
   
@@ -82,7 +82,7 @@ class _CameraviewState extends State<Facedetction_camera> {
       // backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Face Detection"),),
+        title: Text("Currency Detection"),),
       body: _controller.value.isInitialized
           ? Stack(
               children: [
@@ -104,8 +104,8 @@ class _CameraviewState extends State<Facedetction_camera> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Facedection(
-                                  imagePath: path,
+                                builder: (context) => Displayscreen(
+                                  imagepath: path,
                                 ),
                               ),
                             );
