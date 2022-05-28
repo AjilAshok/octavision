@@ -72,7 +72,7 @@ class _CameraviewState extends State<Facedetction_camera> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _controller.dispose();
+    // _controller.dispose();
     facevoice.speackvoice.stop();
   }
   @override

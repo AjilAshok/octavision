@@ -10,6 +10,7 @@ import 'package:octavision/barcode/barcodecamera.dart';
 import 'package:octavision/currencydetection/currencycamer.dart';
 import 'package:octavision/facedetction/facedectioncamera.dart';
 import 'package:octavision/imagelabeling/imagelabelecamera.dart';
+import 'package:octavision/languagetranslation/translation.dart';
 import 'package:octavision/main.dart';
 import 'package:octavision/objectdetection/objectdetectioncam.dart';
 import 'package:octavision/textrecognise/textrecoginisecam.dart';
@@ -22,6 +23,7 @@ class SecondhomeScreen extends StatefulWidget {
 }
 
 class _SecondhomeScreenState extends State<SecondhomeScreen> {
+  PageController controller = PageController();
   List images = [
     'https://static.vecteezy.com/system/resources/previews/005/680/276/large_2x/qr-code-scanning-app-icon-ui-ux-user-interface-2d-code-reading-app-matrix-barcode-scanner-two-dimensional-barcode-web-or-mobile-application-isolated-illustration-vector.jpg',
     'https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png',
@@ -34,94 +36,49 @@ class _SecondhomeScreenState extends State<SecondhomeScreen> {
     const Objectdectioncam(),
     const TextCam(),
     const Currencydection(),
-     const Facedetction_camera(),
+    const Facedetction_camera(),
     const Camerabarcode(),
     const Imagelabel_camera(),
-    
-   
-    
-    
-    
+
     // const SpeechToText()
   ];
 
-  late final CameraController _controller;
-  final ImagePicker picker = ImagePicker();
-  PageController pageController = PageController(initialPage: 0);
+  // late final CameraController _controller;
+  // final ImagePicker picker = ImagePicker();
+  // PageController pageController = PageController(initialPage: 0);
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _initializeCamera();
+    // _initializeCamera();
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _controller.dispose();
+    // _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     //  picikimage();
-    if (!_controller.value.isInitialized) {
-      return Container();
-    }
+
     return SafeArea(
         child: Scaffold(
-      body: Stack(
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: CameraPreview(_controller),
-          ),
-          ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: images.length,
-            itemBuilder: (context, index) {
-              return FutureBuilder(
-                builder: (context, snapshot) {
-                  return Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(250),
-                        image: DecorationImage(
-                            image: NetworkImage(images[index]))),
-                  );
-                },
-                // future: fucontainermethod(index),
-              );
-            },
-          )
-        ],
-      ),
-    ));
-  }
+            body: PageView(
+      // pageSnapping: true,
+      scrollDirection: Axis.vertical,
+      children: const [
+        Objectdectioncam(),
+        TextCam(),
+        // Translationmodel(),
+        Currencydection(),
+        Facedetction_camera(),
 
-  void _initializeCamera() async {
-    final CameraController cameraController = CameraController(
-      cameras[0],
-      ResolutionPreset.high,
-    );
-    _controller = cameraController;
-
-    _controller.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    });
-  }
-
-  fucontainermethod(index) async {
-    await Future.delayed(Duration(seconds: 3)).then((value) {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>navigator[index],
-          ));
-    });
+        Imagelabel_camera(),
+        // Camerabarcode(),
+      ],
+    )));
   }
 }

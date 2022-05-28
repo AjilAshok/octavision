@@ -68,7 +68,7 @@ class _CameraviewState extends State<Objectdectioncam> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _controller.dispose();
+    // _controller.dispose();
   }
   @override
   

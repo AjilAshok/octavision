@@ -10,6 +10,7 @@ import 'package:octavision/facedetction/facedectioncamera.dart';
 import 'package:octavision/homescreen/widgets/appbarscreen.dart';
 import 'package:octavision/homescreen/widgets/howescreenimagesicon.dart';
 import 'package:octavision/imagelabeling/imagelabelecamera.dart';
+import 'package:octavision/languageidentificattion/languageidentification.dart';
 import 'package:octavision/languagetranslation/translation.dart';
 import 'package:octavision/objectdetection/objectdetectioncam.dart';
 import 'package:octavision/speechtotext/speechtotext.dart';
@@ -26,34 +27,29 @@ class Home extends StatelessWidget {
     'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif',
     'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif',
     'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif',
-    'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif'
+    'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2VsJ_K6UUA2TOdu83uoDem5ulpvDiIXzbvA&usqp=CAU',
   ];
   List textes = [
     "Object Detection",
-    "Text Recoganisation",
+    "Text Recognition",
     "Language Translation",
     "Currency Detection",
+    "Language Identification",
     "Face Detection",
     "Barcode",
     "Image Label",
-    
-   
-    
-    
   ];
   List navigator = [
     const Objectdectioncam(),
     const TextCam(),
     const Translationmodel(),
     const Currencydection(),
+    LanguageIdentifierView(),
     const Facedetction_camera(),
     const Camerabarcode(),
     const Imagelabel_camera(),
-    
-   
-    
-    
-    
+
     // const SpeechToText()
   ];
   List colorse = [
@@ -63,9 +59,9 @@ class Home extends StatelessWidget {
     Colors.indigo,
     const Color.fromARGB(255, 28, 97, 103),
     Colors.purple,
-    Color.fromARGB(255, 221, 119, 17)
+    const Color.fromARGB(255, 221, 119, 17),
+    const Color(0xFFA42838)
     // Colors.lightGreen
-    
   ];
   List conter = [
     const Color(0xff7C4AA7),
@@ -73,7 +69,8 @@ class Home extends StatelessWidget {
     Colors.indigo,
     const Color.fromARGB(255, 28, 97, 103),
     Colors.purple,
-    Color.fromARGB(255, 221, 119, 17),
+    const Color.fromARGB(255, 221, 119, 17),
+    const Color(0xFFA42838),
     Colors.white,
   ];
 
@@ -83,9 +80,7 @@ class Home extends StatelessWidget {
       child: Scaffold(
           backgroundColor: Colors.white,
           body: NestedScrollView(
-            physics: NeverScrollableScrollPhysics(),
-            
-
+              physics: NeverScrollableScrollPhysics(),
               floatHeaderSlivers: false,
               headerSliverBuilder: ((context, innerBoxIsScrolled) => [
                     SliverAppBar(
@@ -111,14 +106,12 @@ class Home extends StatelessWidget {
                       )),
                     )
                   ]),
-              body: 
-              NotificationListener<OverscrollIndicatorNotification>(
+              body: NotificationListener<OverscrollIndicatorNotification>(
                 onNotification: (OverscrollIndicatorNotification notification) {
                   notification.disallowIndicator();
                   return true;
                 },
-                child:
-                 SingleChildScrollView(
+                child: SingleChildScrollView(
                   //  scrollDirection: Axis.vertical,
                   child: Column(
                     children: [
@@ -155,12 +148,8 @@ class Home extends StatelessWidget {
                           size: Size(double.infinity, 100)),
                       Flexible(
                         flex: 0,
-                       
-                        child:
-                         ListView.builder(
-                          
+                        child: ListView.builder(
                           shrinkWrap: true,
-                         
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: textes.length,
                           itemBuilder: (context, index) {
@@ -175,11 +164,9 @@ class Home extends StatelessWidget {
                               child: Stack(
                                 children: [
                                   Container(
-                                    
                                     width: double.infinity,
                                     height: MediaQuery.of(context).size.height *
                                         0.2,
-                                  
                                     decoration: BoxDecoration(
                                         color: conter[index],
                                         border: Border.all(
@@ -213,8 +200,8 @@ class Home extends StatelessWidget {
                       ),
                     ],
                   ),
-                              ),
-                ))),
+                ),
+              ))),
     );
   }
 }

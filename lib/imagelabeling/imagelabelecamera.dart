@@ -72,7 +72,7 @@ class _CameraviewState extends State<Imagelabel_camera> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _controller.dispose();
+    // _controller.dispose();
     imagespech.speackvoice.stop();
   }
   @override

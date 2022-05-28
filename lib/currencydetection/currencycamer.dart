@@ -72,7 +72,7 @@ class _CameraviewState extends State<Currencydection> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _controller.dispose();
+    // _controller.dispose();
     currcenyvoice.speackvoice.stop();
   }
   @override

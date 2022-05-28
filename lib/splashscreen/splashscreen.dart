@@ -11,21 +11,17 @@ import 'package:octavision/indroductionscreen/indroductionscreen.dart';
 import 'package:octavision/main.dart';
 
 
-class Splashscreen extends StatefulWidget {
-  const Splashscreen({Key? key}) : super(key: key);
+class Splashscreen extends StatelessWidget {
+   Splashscreen({Key? key}) : super(key: key);
 
-  @override
-  State<Splashscreen> createState() => _SplashscreenState();
-}
-
-class _SplashscreenState extends State<Splashscreen> {
+  
    final FlutterTts voicetest=FlutterTts();
    String welcomevoice="Welcome,, to Octtaaaa  vission.";
   //  bool visible=false;
   
   @override
   Widget build(BuildContext context) {
-    speack();
+    // speack();
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.black,
