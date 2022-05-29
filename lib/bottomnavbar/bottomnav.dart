@@ -24,7 +24,7 @@ class BottomNav extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
          Home(),
-       const  SecondhomeScreen()
+      //  const  SecondhomeScreen()
         ],
       )
       // bottomNavigationBar:BottomNavigationBar(

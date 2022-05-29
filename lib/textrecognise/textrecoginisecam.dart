@@ -2,20 +2,22 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:octavision/controller/textrecogtion_controller.dart';
+import 'package:octavision/main.dart';
+import 'package:octavision/speack.dart';
 // import 'package:octavision/main.dart';
 // import 'package:octavision/speack.dart';
 import 'package:octavision/textrecognise/textresult.dart';
 
-class TextCam extends StatefulWidget {
-  const TextCam({Key? key}) : super(key: key);
+class TextCam extends StatelessWidget {
+  TextCam({Key? key}) : super(key: key);
 
-  @override
-  State<TextCam> createState() => _CameraviewState();
-}
+//   @override
+//   State<TextCam> createState() => _CameraviewState();
+// }
 
-class _CameraviewState extends State<TextCam> {
-  // final textvoice = Voicespeeech();
-  // String textspeech = "Text recognization";
+// class _CameraviewState extends State<TextCam> {
+  final textvoice = Voicespeeech();
+  String textspeech = "Text recognization";
   // late final CameraController _controller;
   // void _initializeCamera() async {
   //   final CameraController cameraController = CameraController(
@@ -25,10 +27,10 @@ class _CameraviewState extends State<TextCam> {
   //   _controller = cameraController;
 
   //   _controller.initialize().then((_) {
-  //     if (!mounted) {
-  //       return;
-  //     }
-  //     setState(() {});
+  //     // if (!mounted) {
+  //     //   return;
+  //     // }
+  //     // setState(() {});
   //   });
   // }
 
@@ -84,18 +86,27 @@ class _CameraviewState extends State<TextCam> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text("Text Recognition"),
       ),
       body: GetBuilder<Textrecoginsecontroler>(
-        // init: MyController(),
-        initState: (_) {},
-        builder: (controller) {
+        // dispose: (state) {
+        //   textrecginisecontoler.dispose();
+        
+        // },
+
+        initState: (state) {
+
+          textrecginisecontoler.controller.initialize();
+
+          textvoice.speack(textspeech);
+        },
+
+        builder: (controllers) {
           return GestureDetector(
             onTap: () async {
-              await controller.takePicture().then((String? path) {
+              await controllers.takePicture().then((String? path) {
                 if (path != null) {
                   Navigator.push(
                     context,
@@ -110,51 +121,65 @@ class _CameraviewState extends State<TextCam> {
                 }
               });
             },
-            child: 
-              // builder: (controllers) => 
-              controller.controller.value.isInitialized
-                  ? Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        CameraPreview(controller.controller),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(20.0),
-                        //   child: Container(
-                        //     alignment: Alignment.bottomCenter,
-                        //     // child: ElevatedButton.icon(
-                        //     //   style: ButtonStyle(backgroundColor:MaterialStateProperty.all(Colors.black)),
-                        //     //   icon: Icon(Icons.camera,color: Colors.white,),
-                        //     //   label: Text("Click"),
-                        //     //   onPressed: () async {
-            
-                        //     //     // If the returned path is not null navigate
-                        //     //     // to the DetailScreen
-                        //     //     // await _takePicture().then((String? path) {
-                        //     //     //   if (path != null) {
-                        //     //     //     Navigator.push(
-                        //     //     //       context,
-                        //     //     //       MaterialPageRoute(
-                        //     //     //         builder: (context) => TextreconiseResult(
-                        //     //     //           imagePath: path,
-                        //     //     //         ),
-                        //     //     //       ),
-                        //     //     //     );
-                        //     //     //   } else {
-                        //     //     //     print('Image path not found!');
-                        //     //     //   }
-                        //     //     // });
-                        //     //   },
-                        //     // ),
-                        //   ),
-                        // )
-                      ],
-                    )
-                  : Container(
-                      color: Colors.black,
-                      child: Center(
-                        child: CircularProgressIndicator(),
+            child: controllers.controller.value.isInitialized
+                ? Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      FutureBuilder<void>(
+                        future: controllers.initializeControllerFuture,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            // If the Future is complete, display the preview.
+                            return CameraPreview(controllers.controller);
+                          } else {
+                            // Otherwise, display a loading indicator.
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                        },
                       ),
+
+                      // CameraPreview(controllers.controller),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(20.0),
+                      //   child: Container(
+                      //     alignment: Alignment.bottomCenter,
+                      //     // child: ElevatedButton.icon(
+                      //     //   style: ButtonStyle(backgroundColor:MaterialStateProperty.all(Colors.black)),
+                      //     //   icon: Icon(Icons.camera,color: Colors.white,),
+                      //     //   label: Text("Click"),
+                      //     //   onPressed: () async {
+
+                      //     //     // If the returned path is not null navigate
+                      //     //     // to the DetailScreen
+                      //     //     // await _takePicture().then((String? path) {
+                      //     //     //   if (path != null) {
+                      //     //     //     Navigator.push(
+                      //     //     //       context,
+                      //     //     //       MaterialPageRoute(
+                      //     //     //         builder: (context) => TextreconiseResult(
+                      //     //     //           imagePath: path,
+                      //     //     //         ),
+                      //     //     //       ),
+                      //     //     //     );
+                      //     //     //   } else {
+                      //     //     //     print('Image path not found!');
+                      //     //     //   }
+                      //     //     // });
+                      //     //   },
+                      //     // ),
+                      //   ),
+                      // )
+                    ],
+                  )
+                // )
+                : Container(
+                    color: Colors.black,
+                    child: Center(
+                      child: CircularProgressIndicator(),
                     ),
+                  ),
             // ),
           );
         },

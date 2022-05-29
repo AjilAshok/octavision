@@ -34,8 +34,8 @@ class _SecondhomeScreenState extends State<SecondhomeScreen> {
   ];
   List navigator = [
     const Objectdectioncam(),
-    const TextCam(),
-    const Currencydection(),
+     TextCam(),
+     Currencydection(),
     const Facedetction_camera(),
     const Camerabarcode(),
     const Imagelabel_camera(),
@@ -46,12 +46,12 @@ class _SecondhomeScreenState extends State<SecondhomeScreen> {
   // late final CameraController _controller;
   // final ImagePicker picker = ImagePicker();
   // PageController pageController = PageController(initialPage: 0);
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // _initializeCamera();
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   // _initializeCamera();
+  // }
 
   @override
   void dispose() {
@@ -69,7 +69,7 @@ class _SecondhomeScreenState extends State<SecondhomeScreen> {
             body: PageView(
       // pageSnapping: true,
       scrollDirection: Axis.vertical,
-      children: const [
+      children:  [
         Objectdectioncam(),
         TextCam(),
         // Translationmodel(),

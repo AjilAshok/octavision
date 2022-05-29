@@ -2,17 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:google_mlkit_translation/google_mlkit_translation.dart';
+import 'package:octavision/controller/translationcontroler.dart';
 import 'package:octavision/speack.dart';
 
-class Translationmodel extends StatefulWidget {
-  const Translationmodel({Key? key}) : super(key: key);
+class Translationmodel extends StatelessWidget {
+  Translationmodel({Key? key}) : super(key: key);
 
-  @override
-  State<Translationmodel> createState() => _TranslationmodelState();
-}
-
-class _TranslationmodelState extends State<Translationmodel> {
   var items = [
     "Afrikaans",
     "Albanian",
@@ -74,34 +71,12 @@ class _TranslationmodelState extends State<Translationmodel> {
     "Vietnamese",
     "Welsh",
   ];
-  String? langaue;
+
   final _controller = TextEditingController();
-  final languagvoice=Voicespeeech();
-  String languagespechh="Language Translation";
-  dynamic index = 0;
-  dynamic targeindex = 0;
-  final drop = TranslateLanguage.values;
-  final drop1 = TranslateLanguage.values;
-  late final _onDeviceTranslator = OnDeviceTranslator(
-      sourceLanguage: drop[index], targetLanguage: drop1[targeindex]);
+  final languagvoice = Voicespeeech();
+  String languagespechh = "Language Translation";
 
-  String dropvalue = "Afrikaans";
-
-  String dropvalue1 = "Afrikaans";
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    languagvoice.speack(languagespechh);
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    languagvoice.speackvoice.stop();
-    _onDeviceTranslator.close();
-  }
+  final translatincontroler = Get.put(Translationmodelcontroler());
 
   @override
   Widget build(BuildContext context) {
@@ -119,25 +94,34 @@ class _TranslationmodelState extends State<Translationmodel> {
         child: ListView(
           children: [
             SizedBox(height: 30),
-            Center(child: Text('Enter text (source: ${dropvalue})')),
+            GetBuilder<Translationmodelcontroler>(
+                builder: (controller) => Center(
+                    child:
+                        Text('Enter text (source: ${controller.dropvalue})'))),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: DropdownButton(
-                  value: dropvalue,
-                  items: items.map((String item) {
-                    return DropdownMenuItem(
-                      value: item,
-                      child: Text(item),
-                    );
-                  }).toList(),
-                  onChanged: (String? newvalues) {
-                    setState(() {
-                      index = items.indexOf(newvalues.toString());
+              child: GetBuilder<Translationmodelcontroler>(
+                initState: (state) {
+                  languagvoice.speack(languagespechh);
+                },
+                builder: (controller) => DropdownButton(
+                    value: controller.dropvalue,
+                    items: items.map((String item) {
+                      return DropdownMenuItem(
+                        value: item,
+                        child: Text(item),
+                      );
+                    }).toList(),
+                    onChanged: (String? newvalues) {
+                      // setState(() {
+                      controller.index = items.indexOf(newvalues.toString());
                       print(newvalues);
 
-                      dropvalue = newvalues.toString();
-                    });
-                  }),
+                      controller.dropvalue = newvalues.toString();
+                      controller.update();
+                      // });
+                    }),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -154,28 +138,35 @@ class _TranslationmodelState extends State<Translationmodel> {
                 ),
               ),
             ),
-            Center(child: Text('Translated Text (target: ${dropvalue1})')),
+            GetBuilder<Translationmodelcontroler>(
+                builder: (controller) => Center(
+                    child: Text(
+                        'Translated Text (target: ${controller.dropvalue1})'))),
             SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: DropdownButton(
-                  value: dropvalue1,
-                  items: items.map((String item) {
-                    return DropdownMenuItem(
-                      value: item,
-                      child: Text(
-                        item,
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newvalues) {
-                    setState(() {
+              child: GetBuilder<Translationmodelcontroler>(
+                builder: (controller) => DropdownButton(
+                    value: controller.dropvalue1,
+                    items: items.map((String item) {
+                      return DropdownMenuItem(
+                        value: item,
+                        child: Text(
+                          item,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (String? newvalues) {
+                      // setState(() {
                       print(newvalues);
-                      targeindex = items.indexOf(newvalues.toString());
-                      dropvalue1 = newvalues!;
-                    });
-                  }),
+                      controller.targeindex =
+                          items.indexOf(newvalues.toString());
+                      controller.dropvalue1 = newvalues!;
+                      controller.update();
+                      // });
+                    }),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -186,12 +177,18 @@ class _TranslationmodelState extends State<Translationmodel> {
                       border: Border.all(
                     width: 2,
                   )),
-                  child: Text(langaue ?? '')),
+                  child: GetBuilder<Translationmodelcontroler>(
+                      builder: (controller) => Text(controller.langaue ?? ''))),
             ),
             SizedBox(height: 30),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              ElevatedButton(
-                  onPressed: _translateText, child: Text('Translate'))
+              GetBuilder<Translationmodelcontroler>(
+                builder: (controller) => ElevatedButton(
+                    onPressed: () {
+                      controller.translateText(_controller.text);
+                    },
+                    child: const Text('Translate')),
+              )
             ]),
           ],
         ),
@@ -199,15 +196,15 @@ class _TranslationmodelState extends State<Translationmodel> {
     ));
   }
 
-  Future<void> _translateText() async {
-    FocusScope.of(context).unfocus();
+  // Future<void> _translateText(Translationmodelcontroler contrl ) async {
+  //   FocusScope.of(context).unfocus();
 
-    final result = await OnDeviceTranslator(
-            sourceLanguage: drop[index], targetLanguage: drop1[targeindex])
-        .translateText(_controller.text);
-    // final result =  _onDeviceTranslator.translateText(_controller.text);
-    setState(() {
-      langaue = result;
-    });
-  }
+  //   final result = await OnDeviceTranslator(
+  //           sourceLanguage: drop[contrl. index], targetLanguage: drop1[contrl.targeindex])
+  //       .translateText(_controller.text);
+  //   // final result =  _onDeviceTranslator.translateText(_controller.text);
+  //   setState(() {
+  //     langaue = result;
+  //   });
+  // }
 }

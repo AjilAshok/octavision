@@ -11,7 +11,8 @@ import 'package:flutter_tts/flutter_tts.dart';
 
 class TextreconiseResult extends StatefulWidget {
   final String imagePath;
-  const TextreconiseResult({Key? key, required this.imagePath}) : super(key: key);
+  const TextreconiseResult({Key? key, required this.imagePath})
+      : super(key: key);
 
   @override
   State<TextreconiseResult> createState() => _TextreconiseResultState();
@@ -19,7 +20,7 @@ class TextreconiseResult extends StatefulWidget {
 
 class _TextreconiseResultState extends State<TextreconiseResult> {
   late final String _imagePath;
-  final FlutterTts vioice=FlutterTts();
+  final FlutterTts vioice = FlutterTts();
   final textrec = GoogleMlKit.vision.textRecognizer();
 
   Size? _imageSize;
@@ -48,32 +49,25 @@ class _TextreconiseResultState extends State<TextreconiseResult> {
   void _recognizeImage() async {
     _getImageSize(File(_imagePath));
     final inputImage = InputImage.fromFilePath(_imagePath);
-    final RecognizedText textex =
-        await textrec.processImage(inputImage);
-        setState(() {
-          barcoderesult=textex.text;
-          
-          if(barcoderesult.isNotEmpty){
-             speak(text: barcoderesult);
+    final RecognizedText textex = await textrec.processImage(inputImage);
+    setState(() {
+      barcoderesult = textex.text;
 
-          }else{
-            speak(text: "No Result Please try again");
-          }
-         
-        });
-       
-  
-
-
+      if (barcoderesult.isNotEmpty) {
+        speak(text: barcoderesult);
+      } else {
+        speak(text: "No Result Please try again");
+      }
+    });
   }
-  speak({required String text})async{
+
+  speak({required String text}) async {
     // print(await vioice.getVoices);
     await vioice.setLanguage("en-US");
     // await vioice.setVoice({"name": "Karen", "locale": "en-AU"});
     await vioice.setPitch(1.5);
     await vioice.setSpeechRate(0.2);
     await vioice.speak(text);
-
   }
 
   @override
@@ -91,7 +85,7 @@ class _TextreconiseResultState extends State<TextreconiseResult> {
     // Disposing the imageLabeler when not used anymore
     textrec.close();
     vioice.stop();
-    
+
     super.dispose();
   }
 
@@ -140,12 +134,11 @@ class _TextreconiseResultState extends State<TextreconiseResult> {
                             width: double.infinity,
                             height: 120,
                             child: SingleChildScrollView(
-                              child:
-                               barcoderesult.isNotEmpty? 
-                               Text(barcoderesult)
-                              
-                              //  laughurls(barcoderesult):const Text("No Result Please try again"),
-                                   
+                              child: barcoderesult.isNotEmpty
+                                  ? Text(barcoderesult)
+
+                                  //  laughurls(barcoderesult):const Text("No Result Please try again"),
+
                                   : Text("No Result Please try again"),
                             ),
                           ),
@@ -165,6 +158,4 @@ class _TextreconiseResultState extends State<TextreconiseResult> {
             ),
     );
   }
-
-  
 }
