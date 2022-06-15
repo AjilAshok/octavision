@@ -1,14 +1,14 @@
 // ignore_for_file: avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:octavision/currencydetection/currencycamer.dart';
-import 'package:octavision/facedetction/facedectioncamera.dart';
+// import 'package:flutter/src/foundation/key.dart';
+// import 'package:flutter/src/widgets/framework.dart';
+// import 'package:octavision/currencydetection/currencycamer.dart';
+// import 'package:octavision/facedetction/facedectioncamera.dart';
 import 'package:octavision/homescreen/homescreen.dart';
-import 'package:octavision/languagetranslation/translation.dart';
+// import 'package:octavision/languagetranslation/translation.dart';
 import 'package:octavision/secondehome/secondehomescreen.dart';
-import 'package:octavision/textrecognise/textrecoginisecam.dart';
+// import 'package:octavision/textrecognise/textrecoginisecam.dart';
 
 class BottomNav extends StatelessWidget {
    BottomNav({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class BottomNav extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
          Home(),
-      //  const  SecondhomeScreen()
+       const  SecondhomeScreen()
         ],
       )
       // bottomNavigationBar:BottomNavigationBar(

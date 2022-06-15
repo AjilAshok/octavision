@@ -3,3 +3,5 @@
 200 rupees
 100 rupees
 50 rupees
+20 rupees
+10 rupees

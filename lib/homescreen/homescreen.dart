@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:octavision/barcode/barcodecamera.dart';
+import 'package:octavision/barcode/barcoderesul.dart';
 import 'package:octavision/currencydetection/currencycamer.dart';
 import 'package:octavision/facedetction/facedectioncamera.dart';
 import 'package:octavision/homescreen/widgets/appbarscreen.dart';
@@ -41,14 +42,15 @@ class Home extends StatelessWidget {
     "Image Label",
   ];
   List navigator = [
-    const Objectdectioncam(),
+    // const Objectdectioncam(),
+    ObjectDetectorView(),
      TextCam(),
      Translationmodel(),
      Currencydection(),
     LanguageIdentifierView(),
-    const Facedetction_camera(),
-    const Camerabarcode(),
-    const Imagelabel_camera(),
+     Facedetction_camera(),
+     Barcodeview(),
+     Imagelabel_camera(),
 
     // const SpeechToText()
   ];

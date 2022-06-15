@@ -7,6 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:octavision/barcode/barcodecamera.dart';
+import 'package:octavision/barcode/barcoderesul.dart';
 import 'package:octavision/currencydetection/currencycamer.dart';
 import 'package:octavision/facedetction/facedectioncamera.dart';
 import 'package:octavision/imagelabeling/imagelabelecamera.dart';
@@ -33,12 +34,12 @@ class _SecondhomeScreenState extends State<SecondhomeScreen> {
     'https://miro.medium.com/freeze/max/1000/1*PDA9zADqD9qqCu-CmJ9Ddw.gif'
   ];
   List navigator = [
-    const Objectdectioncam(),
+    // const Objectdectioncam(),
      TextCam(),
      Currencydection(),
-    const Facedetction_camera(),
-    const Camerabarcode(),
-    const Imagelabel_camera(),
+     Facedetction_camera(),
+    Barcodeview(),
+     Imagelabel_camera(),
 
     // const SpeechToText()
   ];
@@ -70,9 +71,9 @@ class _SecondhomeScreenState extends State<SecondhomeScreen> {
       // pageSnapping: true,
       scrollDirection: Axis.vertical,
       children:  [
-        Objectdectioncam(),
+        // Objectdectioncam(),
         TextCam(),
-        // Translationmodel(),
+        Translationmodel(),
         Currencydection(),
         Facedetction_camera(),
 

@@ -7,18 +7,18 @@ import 'package:octavision/facedetction/facedectionresult.dart';
 import 'package:octavision/main.dart';
 import 'package:octavision/speack.dart';
 
-class Currencydection extends StatefulWidget {
-  const Currencydection({ Key? key }) : super(key: key);
+class Currencydection extends StatelessWidget {
+   Currencydection({ Key? key }) : super(key: key);
 
-  @override
-  State<Currencydection> createState() => _CameraviewState();
-}
+//   @override
+//   State<Currencydection> createState() => _CameraviewState();
+// }
 
 
-class _CameraviewState extends State<Currencydection> {
+// class _CameraviewState extends State<Currencydection> {
   final currcenyvoice=Voicespeeech();
   String facespeech='Currency detection';
-  // final currencyControler=Get.put(Textrecoginsecontroler());
+  final currencyControler=Get.put(Textrecoginsecontroler());
   // late final CameraController _controller;
   // void _initializeCamera() async {
   //   final CameraController cameraController = CameraController(
@@ -88,6 +88,7 @@ class _CameraviewState extends State<Currencydection> {
         title: Text("Currency Detection"),),
       body: GetBuilder<Textrecoginsecontroler>(
         initState:(state) {
+          //  currencyControler.controller.initialize();
           currcenyvoice.speack(facespeech);
           
         }, 
@@ -112,6 +113,7 @@ class _CameraviewState extends State<Currencydection> {
       
               },
               child: Stack(
+                fit: StackFit.expand,
                   children: [
                     CameraPreview(controllers.controller),
                     // Padding(

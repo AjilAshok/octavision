@@ -18,21 +18,21 @@ class TextCam extends StatelessWidget {
 // class _CameraviewState extends State<TextCam> {
   final textvoice = Voicespeeech();
   String textspeech = "Text recognization";
-  // late final CameraController _controller;
-  // void _initializeCamera() async {
-  //   final CameraController cameraController = CameraController(
-  //     cameras[0],
-  //     ResolutionPreset.high,
-  //   );
-  //   _controller = cameraController;
+  late final CameraController _controller;
+  void _initializeCamera() async {
+    final CameraController cameraController = CameraController(
+      cameras[0],
+      ResolutionPreset.high,
+    );
+    _controller = cameraController;
 
-  //   _controller.initialize().then((_) {
-  //     // if (!mounted) {
-  //     //   return;
-  //     // }
-  //     // setState(() {});
-  //   });
-  // }
+    _controller.initialize().then((_) {
+      // if (!mounted) {
+      //   return;
+      // }
+      // setState(() {});
+    });
+  }
 
   // picturee
   // Future<String?> _takePicture(  ) async {
@@ -91,18 +91,14 @@ class TextCam extends StatelessWidget {
         title: const Text("Text Recognition"),
       ),
       body: GetBuilder<Textrecoginsecontroler>(
-        // dispose: (state) {
-        //   textrecginisecontoler.dispose();
-        
-        // },
-
+        dispose: (state) {
+          textvoice.speackvoice.stop();
+          //  textrecginisecontoler.controller.dispose();
+        },
         initState: (state) {
-
           textrecginisecontoler.controller.initialize();
-
           textvoice.speack(textspeech);
         },
-
         builder: (controllers) {
           return GestureDetector(
             onTap: () async {
@@ -125,22 +121,7 @@ class TextCam extends StatelessWidget {
                 ? Stack(
                     fit: StackFit.expand,
                     children: [
-                      FutureBuilder<void>(
-                        future: controllers.initializeControllerFuture,
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            // If the Future is complete, display the preview.
-                            return CameraPreview(controllers.controller);
-                          } else {
-                            // Otherwise, display a loading indicator.
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          }
-                        },
-                      ),
-
-                      // CameraPreview(controllers.controller),
+                      CameraPreview(controllers.controller),
                       // Padding(
                       //   padding: const EdgeInsets.all(20.0),
                       //   child: Container(
@@ -175,7 +156,7 @@ class TextCam extends StatelessWidget {
                   )
                 // )
                 : Container(
-                    color: Colors.black,
+                    color: Colors.red,
                     child: Center(
                       child: CircularProgressIndicator(),
                     ),
