@@ -196,15 +196,5 @@ class Translationmodel extends StatelessWidget {
     ));
   }
 
-  // Future<void> _translateText(Translationmodelcontroler contrl ) async {
-  //   FocusScope.of(context).unfocus();
-
-  //   final result = await OnDeviceTranslator(
-  //           sourceLanguage: drop[contrl. index], targetLanguage: drop1[contrl.targeindex])
-  //       .translateText(_controller.text);
-  //   // final result =  _onDeviceTranslator.translateText(_controller.text);
-  //   setState(() {
-  //     langaue = result;
-  //   });
-  // }
+  
 }

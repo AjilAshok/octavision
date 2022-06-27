@@ -16,14 +16,10 @@ import 'package:octavision/main.dart';
 import 'package:octavision/objectdetection/objectdetectioncam.dart';
 import 'package:octavision/textrecognise/textrecoginisecam.dart';
 
-class SecondhomeScreen extends StatefulWidget {
-  const SecondhomeScreen({Key? key}) : super(key: key);
+class SecondhomeScreen extends StatelessWidget {
+   SecondhomeScreen({Key? key}) : super(key: key);
 
-  @override
-  State<SecondhomeScreen> createState() => _SecondhomeScreenState();
-}
-
-class _SecondhomeScreenState extends State<SecondhomeScreen> {
+  
   PageController controller = PageController();
   List images = [
     'https://static.vecteezy.com/system/resources/previews/005/680/276/large_2x/qr-code-scanning-app-icon-ui-ux-user-interface-2d-code-reading-app-matrix-barcode-scanner-two-dimensional-barcode-web-or-mobile-application-isolated-illustration-vector.jpg',
@@ -35,32 +31,16 @@ class _SecondhomeScreenState extends State<SecondhomeScreen> {
   ];
   List navigator = [
     // const Objectdectioncam(),
-     TextCam(),
-     Currencydection(),
-     Facedetction_camera(),
+    TextCam(),
+    Currencydection(),
+    Facedetction_camera(),
     Barcodeview(),
-     Imagelabel_camera(),
+    Imagelabel_camera(),
 
     // const SpeechToText()
   ];
 
-  // late final CameraController _controller;
-  // final ImagePicker picker = ImagePicker();
-  // PageController pageController = PageController(initialPage: 0);
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   // _initializeCamera();
-  // }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    // _controller.dispose();
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     //  picikimage();
@@ -70,15 +50,13 @@ class _SecondhomeScreenState extends State<SecondhomeScreen> {
             body: PageView(
       // pageSnapping: true,
       scrollDirection: Axis.vertical,
-      children:  [
-        // Objectdectioncam(),
+      children: [
+        
         TextCam(),
-        Translationmodel(),
         Currencydection(),
         Facedetction_camera(),
-
         Imagelabel_camera(),
-        // Camerabarcode(),
+        Barcodeview()
       ],
     )));
   }

@@ -12,33 +12,14 @@ class Displayscreen extends StatelessWidget {
   final String imagepath;
    Displayscreen({Key? key, required this.imagepath}) : super(key: key);
 
-//   @override
-//   State<Displayscreen> createState() => _DisplayscreenState();
-// }
 
-// class _DisplayscreenState extends State<Displayscreen> {
   List op=[];
   int total=0;
   Image? img;
   final style = const TextStyle(
     color: Colors.white,
   );
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   loadModel().then((value) {
-  //     setState(() {});
-  //   });
-  //   img =Image.file(File(widget.imagepath));
-  //   classifyImage(widget.imagepath);
-  // }
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   super.dispose();
-  //   Tflite.close();
-  // }
+  
   final currencycontroler=Get.put(Currencydisplayresult());
 
   @override
@@ -81,14 +62,7 @@ class Displayscreen extends StatelessWidget {
   }
   classifyImage(String image) async {
     var output = await Tflite.
-    // detectObjectOnImage(path: image,
-    // model: "YOLO",
-    // imageMean:0.0,
-    // imageStd: 255.5,
-    // threshold: 0.3,
-    // numResultsPerClass: 2,
-    // asynch: true 
-    // );
+   
     runModelOnImage(
       path: image,
       // numResults: 5,
@@ -111,8 +85,5 @@ class Displayscreen extends StatelessWidget {
   }
 
 
-  // loadModel() async {
-  //   await Tflite.loadModel(
-  //       model: "assets/model_unquant.tflite", labels: "assets/labels.txt");
-  // }
+  
 }

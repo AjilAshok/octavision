@@ -43,14 +43,16 @@ class Home extends StatelessWidget {
   ];
   List navigator = [
     // const Objectdectioncam(),
-    ObjectDetectorView(),
+    ObjectDetectorView(outputvoice: "all",),
      TextCam(),
      Translationmodel(),
      Currencydection(),
     LanguageIdentifierView(),
      Facedetction_camera(),
      Barcodeview(),
+    //  SpeechToText()
      Imagelabel_camera(),
+    
 
     // const SpeechToText()
   ];

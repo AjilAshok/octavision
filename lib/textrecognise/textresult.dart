@@ -16,11 +16,7 @@ class TextreconiseResult extends StatelessWidget {
    TextreconiseResult({Key? key, required this.imagePath})
       : super(key: key);
 
-//   @override
-//   State<TextreconiseResult> createState() => _TextreconiseResultState();
-// }
 
-// class _TextreconiseResultState extends State<TextreconiseResult> {
   late final String _imagePath;
   final FlutterTts vioice = FlutterTts();
   final textrec = GoogleMlKit.vision.textRecognizer();
@@ -74,24 +70,7 @@ class TextreconiseResult extends StatelessWidget {
     await vioice.speak(text);
   }
 
-  // @override
-  // void initState() {
-  //   _imagePath = widget.imagePath;
-
-  //   // Initializing the Image Labeler
-  //   // final objectdection= GoogleMlKit.vision.objectDetector();
-  //   // _recognizeImage();
-  //   super.initState();
-  // }
-
-  // @override
-  // void dispose() {
-  //   // Disposing the imageLabeler when not used anymore
-  //   // textrec.close();
-  //   // vioice.stop();
-
-  //   super.dispose();
-  // }
+  
   final textrrecoginseresultctrl=Get.put(Textrecoginseresultcontroler());
 
   @override
@@ -108,9 +87,9 @@ class TextreconiseResult extends StatelessWidget {
         },
         initState: (state) {
           _imagePath=imagePath;
-          // textrrecoginseresultctrl.imagePath=imagePath;
+         
           _recognizeImage();
-          // textrrecoginseresultctrl.recognizeImage();
+         
         },
         builder: (controller) => 
     _imageSize != null
@@ -154,12 +133,12 @@ class TextreconiseResult extends StatelessWidget {
                                 child:barcoderesult.isNotEmpty
                                     ? Text(barcoderesult)
       
-                                    //  laughurls(barcoderesult):const Text("No Result Please try again"),
+                                    
       
                                     : Text("No Result Please try again"),
                               ),
                             ),
-                            // speak(text: barcoderesult)
+                            
                           ],
                         ),
                       ),

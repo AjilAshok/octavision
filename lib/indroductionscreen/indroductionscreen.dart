@@ -5,6 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:octavision/bottomnavbar/bottomnav.dart';
 import 'package:octavision/homescreen/homescreen.dart';
 class OnborderingScreen extends StatelessWidget {
   const OnborderingScreen({Key? key}) : super(key: key);
@@ -46,7 +47,7 @@ class OnborderingScreen extends StatelessWidget {
           dotsDecorator: decorator(),
           animationDuration: 100,
           onDone: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home(),));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNav(),));
           },
         
      

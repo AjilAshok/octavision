@@ -28,9 +28,9 @@ class Facedection extends StatelessWidget {
   }
 
   speak({required String text}) async {
-    // print(await vioice.getVoices);
+    
     await tts.setLanguage("en-US");
-    // await vioice.setVoice({"name": "Karen", "locale": "en-AU"});
+    
     await tts.setPitch(1.5);
     await tts.setSpeechRate(0.2);
     await tts.speak("There is $text person");

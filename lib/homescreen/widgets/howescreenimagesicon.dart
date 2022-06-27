@@ -21,26 +21,16 @@ class HomeIcons extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-        
-          
-          names[index],
-          maxLines:1,
-          overflow: TextOverflow.ellipsis,
-          style: GoogleFonts.montserrat(
-              color: Colors.white, fontSize: 23, fontWeight: FontWeight.bold),
-        ),
-        Container(
-          // margin:const EdgeInsets.only(top:),
-          // child: CircleAvatar(
-          //   radius: 30,
-          //   backgroundImage:NetworkImage(logimage[index] ) ,
-          // ),
-          
+        Expanded(
+          child: Text(
+            names[index],
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.montserrat(
+                color: Colors.white, fontSize: 23, fontWeight: FontWeight.bold),
+          ),
         ),
        
-          
-        
       ],
     );
   }

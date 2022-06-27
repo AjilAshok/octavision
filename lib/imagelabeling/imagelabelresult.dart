@@ -11,11 +11,6 @@ class Imagelabelresult extends StatelessWidget {
 
    Imagelabelresult({Key? key, required this.imagePath}) : super(key: key);
 
-//   @override
-//   _ImagelabelresultState createState() => _ImagelabelresultState();
-// }
-
-// class _ImagelabelresultState extends State<Imagelabelresult> {
   final imagelablectrl=Get.put(Imagelabelcontrole());
   late final String _imagePath;
   final imageLabeler = GoogleMlKit.vision.imageLabeler();
@@ -66,23 +61,7 @@ class Imagelabelresult extends StatelessWidget {
     }
   }
 
-  // @override
-  // void initState() {
-  //   _imagePath = .imagePath;
-
-  //   // Initializing the Image Labeler
-  //   // final imageLabeler = GoogleMlKit.vision.imageLabeler();
-  //   _recognizeImage();
-  //   super.initState();
-  // }
-
-  // @override
-  // void dispose() {
-  //   // Disposing the imageLabeler when not used anymore
-  //   imageLabeler.close();
-  //   super.dispose();
-  // }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

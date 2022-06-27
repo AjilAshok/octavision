@@ -21,7 +21,7 @@ class Splashscreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    // speack();
+  
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.black,
@@ -43,12 +43,10 @@ class Splashscreen extends StatelessWidget {
                         fit: BoxFit.cover)),
               ),
               nextScreen:initScreen==0||initScreen==null?OnborderingScreen():BottomNav(),
-              //  Splashscreen(),
-              // Home(),
-              // OnborderingScreen(),
+            
               duration: 3000,
               splashTransition: SplashTransition.fadeTransition,
-              // pageTransitionType: PageTransitionType.scale ,
+              
               animationDuration: Duration(seconds: 2),
               
             ),
