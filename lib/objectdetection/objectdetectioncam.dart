@@ -10,8 +10,9 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 class ObjectDetectorView extends StatefulWidget {
-   ObjectDetectorView({Key? key,required this.outputvoice}) : super(key: key);
+   ObjectDetectorView({Key? key,required this.outputvoice,}) : super(key: key);
    String? outputvoice;
+  //  String?titleappbar;
 
   @override
   _ObjectDetectorView createState() => _ObjectDetectorView();
@@ -45,14 +46,12 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
 
   @override
   Widget build(BuildContext context) {
-     print("************************");
-    print(widget.outputvoice);
-    print("************************");
+ 
     return
         // ElevatedButton(onPressed: (){}, child:Text("dsgsg"));
         CameraView(
       result: results,
-      title: 'Object Detector',
+      title: "Find",
       customPaint: _customPaint,
       text: _text,
       onImage: (inputImage) {

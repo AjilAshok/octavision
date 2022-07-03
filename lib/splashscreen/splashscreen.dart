@@ -44,10 +44,10 @@ class Splashscreen extends StatelessWidget {
               ),
               nextScreen:initScreen==0||initScreen==null?OnborderingScreen():BottomNav(),
             
-              duration: 3000,
+              duration: 1000,
               splashTransition: SplashTransition.fadeTransition,
               
-              animationDuration: Duration(seconds: 2),
+              animationDuration:const Duration(seconds: 2),
               
             ),
           ),

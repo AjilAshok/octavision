@@ -74,7 +74,7 @@ class Translationmodel extends StatelessWidget {
 
   final _controller = TextEditingController();
   final languagvoice = Voicespeeech();
-  String languagespechh = "Language Translation";
+  String languagespechh = "Translation";
 
   final translatincontroler = Get.put(Translationmodelcontroler());
 
@@ -83,8 +83,9 @@ class Translationmodel extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         elevation: 0,
-        title: const Text("Language translation "),
+        title: const Text("Translation"),
         backgroundColor: Colors.black,
       ),
       body: GestureDetector(
@@ -104,6 +105,10 @@ class Translationmodel extends StatelessWidget {
                 initState: (state) {
                   languagvoice.speack(languagespechh);
                 },
+                 dispose: (state) {
+          languagvoice.speackvoice.stop();
+          
+        },
                 builder: (controller) => DropdownButton(
                     value: controller.dropvalue,
                     items: items.map((String item) {

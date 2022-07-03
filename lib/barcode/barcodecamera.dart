@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_commons/google_mlkit_commons.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:octavision/spinneranimation.dart';
 
 import '../main.dart';
 
@@ -78,6 +79,7 @@ class _CameraViewState extends State<CameraView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.black,
         title: Text(widget.title),
        
@@ -100,7 +102,7 @@ class _CameraViewState extends State<CameraView> {
 
   Widget _liveFeedBody() {
     if (_controller?.value.isInitialized == false) {
-      return Container();
+      return const Spinner_lodading ();
     }
 
     final size = MediaQuery.of(context).size;

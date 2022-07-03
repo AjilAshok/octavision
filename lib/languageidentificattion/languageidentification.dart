@@ -22,7 +22,8 @@ class LanguageIdentifierView extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.black,
-        title: Text('Language Identification')),
+        centerTitle: true,
+        title: Text('Language ')),
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Padding(
           padding: const EdgeInsets.all(15.0),

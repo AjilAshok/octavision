@@ -13,7 +13,7 @@ class Facedetction_camera extends StatelessWidget {
 
 
   final facevoice = Voicespeeech();
-  String facespeech = 'Face detection';
+  String facespeech = 'Find people';
   
   final facedectioncontroler = Get.put(Textrecoginsecontroler());
   
@@ -23,14 +23,15 @@ class Facedetction_camera extends StatelessWidget {
       // backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Face Detection"),
+        centerTitle: true,
+        title: const Text("People"),
       ),
       body: GetBuilder<Textrecoginsecontroler>(
         dispose: (state) {
           facevoice.speackvoice.stop();
         },
         initState: (state) {
-          facedectioncontroler.controller.initialize();
+          // facedectioncontroler.controller!.initialize();
 
           facevoice.speack(facespeech);
         },

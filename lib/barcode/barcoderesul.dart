@@ -47,6 +47,7 @@ class _Barcodeview extends State<Barcodeview> {
   @override
   Widget build(BuildContext context) {
     return CameraView(
+      
       title: 'Barcode',
       customPaint: _customPaint,
       text: _text,

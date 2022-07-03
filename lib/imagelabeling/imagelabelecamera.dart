@@ -11,7 +11,7 @@ class Imagelabel_camera extends StatelessWidget {
   Imagelabel_camera({Key? key}) : super(key: key);
 
   final imagespech = Voicespeeech();
-  String imagelablevoice = "Image Label";
+  String imagelablevoice = "See";
   final imagelabelcontroler = Get.put(Textrecoginsecontroler());
   
   @override
@@ -20,11 +20,12 @@ class Imagelabel_camera extends StatelessWidget {
      
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title:const Text(" Image labeling"),
+        centerTitle: true,
+        title:const Text("See"),
       ),
       body: GetBuilder<Textrecoginsecontroler>(
         initState: (state) {
-          imagelabelcontroler.controller.initialize();
+          // imagelabelcontroler.controller!.initialize();
 
           imagespech.speack(imagelablevoice);
         },

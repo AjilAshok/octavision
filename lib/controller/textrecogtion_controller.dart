@@ -24,9 +24,10 @@ class Textrecoginsecontroler extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    initializeCamera();
+    // initializeCamera();
+    // startLiveFeed();
     
-      (WidgetsBinding.instance).addObserver;
+      // (WidgetsBinding.instance).addObserver;
 
     // scanQR();
     // textvoice.speack(textspeech);
@@ -37,7 +38,7 @@ class Textrecoginsecontroler extends GetxController {
     // TODO: implement dispose
     super.dispose();
     controller.dispose();
-     (WidgetsBinding.instance).removeObserver;
+    //  (WidgetsBinding.instance).removeObserver;
     
     textvoice.speackvoice.stop();
   
@@ -65,6 +66,31 @@ class Textrecoginsecontroler extends GetxController {
       print(e);
       update();
     }
+  }
+  Future startLiveFeed() async {
+    final camera = cameras[0];
+    controller = CameraController(
+      camera,
+      ResolutionPreset.high,
+      enableAudio: false,
+    );
+    controller.initialize().then((_) {
+      // if (!mounted) {
+      //   return;
+      // }
+      controller.getMinZoomLevel().then((value) {
+        // zoomLevel = value;
+        // minZoomLevel = value;
+      });
+      controller.getMaxZoomLevel().then((value) {
+        // maxZoomLevel = value;
+      });
+      // controller.startImageStream(_processCameraImage);
+      // setState(() {});
+      update();
+    });
+   
+  
   }
    
 
@@ -106,16 +132,7 @@ class Textrecoginsecontroler extends GetxController {
   }
   
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    // if (!mounted) return;
-
-    // setState(() {
-      // result = barcodeScanRes;
-      // laughurls(result);
-      // update();
-    // });
+    
   }
    laughurls(String url) async {
     // var url=Uri.parse(url);

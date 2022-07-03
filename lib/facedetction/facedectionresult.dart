@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:async';
 import 'dart:io';
 
@@ -8,6 +10,7 @@ import 'package:google_ml_kit/google_ml_kit.dart';
 import 'dart:ui' as ui;
 
 import 'package:octavision/controller/textrecoginseresult.dart';
+
 
 class Facedection extends StatelessWidget {
   final String imagePath;
@@ -82,7 +85,9 @@ class Facedection extends StatelessWidget {
         builder: (controllers) => Column(
           children: [
             image == null
-                ? const CircularProgressIndicator()
+                ?  
+               const    SizedBox()
+                
                 : FittedBox(
                     child: SizedBox(
                       height: image!.height.toDouble(),
@@ -93,15 +98,17 @@ class Facedection extends StatelessWidget {
                     ),
                   ),
             lengthoflist == null
-                ? const CircularProgressIndicator()
-                : Container(
-                    margin: EdgeInsets.only(top: 25),
-                    child: Text(
-                      "There is ${lengthoflist.toString()} person",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ?const Center(child:  CircularProgressIndicator())
+                : Expanded(
+                  child: Container(
+                      margin: const EdgeInsets.only(top: 25),
+                      child: Text(
+                        "There is ${lengthoflist.toString()} person",
+                        style:
+                            const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  )
+                )
           ],
         ),
       ),

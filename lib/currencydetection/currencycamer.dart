@@ -10,7 +10,7 @@ import 'package:octavision/speack.dart';
 class Currencydection extends StatelessWidget {
    Currencydection({ Key? key }) : super(key: key);
   final currcenyvoice=Voicespeeech();
-  String facespeech='Currency detection';
+  String facespeech='Currency ';
   final currencyControler=Get.put(Textrecoginsecontroler());
   
   @override
@@ -20,10 +20,11 @@ class Currencydection extends StatelessWidget {
       // backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Currency Detection"),),
+        centerTitle: true,
+        title: Text("Currency "),),
       body: GetBuilder<Textrecoginsecontroler>(
         initState:(state) {
-           currencyControler.controller.initialize();
+          //  currencyControler.controller!.initialize();
           currcenyvoice.speack(facespeech);
           
         }, 

@@ -220,8 +220,11 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_mlkit_commons/google_mlkit_commons.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:octavision/controller/textrecogtion_controller.dart';
+import 'package:octavision/spinneranimation.dart';
 
 import '../main.dart';
 
@@ -262,6 +265,7 @@ class _CameraViewState extends State<CameraView> {
   double zoomLevel = 0.0, minZoomLevel = 0.0, maxZoomLevel = 0.0;
   final bool _allowPicker = true;
   bool _changingCameraLens = false;
+   final control=Get.put(Textrecoginsecontroler());  
 
   @override
   void initState() {
@@ -354,7 +358,7 @@ class _CameraViewState extends State<CameraView> {
 
   Widget _liveFeedBody() {
     if (_controller?.value.isInitialized == false) {
-      return Container();
+      return const Spinner_lodading();
     }
 
     final size = MediaQuery.of(context).size;
@@ -506,6 +510,8 @@ class _CameraViewState extends State<CameraView> {
       _controller?.startImageStream(_processCameraImage);
       setState(() {});
     });
+   
+  
   }
 
   Future _stopLiveFeed() async {
