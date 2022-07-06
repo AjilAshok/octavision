@@ -6,6 +6,7 @@ import 'package:octavision/controller/textrecogtion_controller.dart';
 import 'package:octavision/imagelabeling/imagelabelresult.dart';
 import 'package:octavision/main.dart';
 import 'package:octavision/speack.dart';
+import 'package:octavision/spinneranimation.dart';
 
 class Imagelabel_camera extends StatelessWidget {
   Imagelabel_camera({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class Imagelabel_camera extends StatelessWidget {
       ),
       body: GetBuilder<Textrecoginsecontroler>(
         initState: (state) {
-          // imagelabelcontroler.controller!.initialize();
+          imagelabelcontroler.startLiveFeed();
 
           imagespech.speack(imagelablevoice);
         },
@@ -53,12 +54,7 @@ class Imagelabel_camera extends StatelessWidget {
                     CameraPreview(controllers.controller),
                   ],
                 )
-              : Container(
-                  color: Colors.black,
-                  child:const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
+              :const Spinner_lodading()
         ),
       ),
     );

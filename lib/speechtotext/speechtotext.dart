@@ -1,13 +1,14 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:octavision/controller/speechtotextcontroler.dart';
 import 'package:octavision/objectdetection/objectdetectioncam.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class SpeechToText extends StatelessWidget {
-   SpeechToText({Key? key}) : super(key: key);
+  SpeechToText({Key? key}) : super(key: key);
 
 //   @override
 //   State<SpeechToText> createState() => _SpeechToTextState();
@@ -24,10 +25,22 @@ class SpeechToText extends StatelessWidget {
     'TV',
     'sink'
   ];
+  // Map<String, List> itemss = {
+  //   'chair': ['sit', 'chair'],
+  //   'bed': ['bed', 'rest', 'sleep'],
+  //   'table': [ 'table','dinning',],
+  //   'sink': ['wash', 'wash basin', 'basin'],
+  //   'laptop': ['laptop', 'computer'],
+  //   'keyboard': ['keyboard'],
+  //   'mobile': ['mobile', 'phone', 'mobile phone'],
+  //   'tv': ['tv', 'television'],
+  //   'refrigerator': ['refrigerator', 'fridge'],
+  //   'AC': ['air conditioner', 'ac']
+  // };
   bool? res = false;
   stt.SpeechToText _speech = stt.SpeechToText();
   bool _isListen = false;
-  String displaytext = "Press the button to speack";
+  String displaytext = "What you want to find";
   void _startListening() async {
     await _speech.listen(
         listenMode: stt.ListenMode.confirmation,
@@ -38,28 +51,62 @@ class SpeechToText extends StatelessWidget {
     contoler.update();
   }
 
- 
-
-  void _onSpeechResult(SpeechRecognitionResult result,  ) {
-   
+  void _onSpeechResult(
+    SpeechRecognitionResult result,
+  ) {
     displaytext = result.recognizedWords;
-    
+    contoler.update();
     var arr = displaytext.split(' ');
-    // print(arr);
+    //  var key=itemss.map((key, value) => null)
+    // // Map<String, List<String>> typedMap;
+    // itemss.forEach((key, value) {
+    //   print("{$key,$value}");
+    // for (var i = 0; i < arr.length; i++) {
+    //   var a = itemss.containsValue(arr[i]);
+    //   print(a);
+    // }
+
+    // });
+
+// String keys =itemss.containsKey(arr).toString();
+// print("8**************");
+// print(keys);
+// print("8**************");
+// String  value=itemss[keys];
+// if (itemss.containsValue(key)) {
+//   // print(key);
+
+    // // print(arr);
     for (var i = 0; i < itemss.length; i++) {
       for (var j = 0; j< arr.length; j++) {
         if (itemss[i]==arr[j]) {
           print(itemss[i]);
           Get.to(ObjectDetectorView(outputvoice:itemss[i],));
-      
-          
+
         }
-        
+
       }
-      
+
     }
 
-   
+// }
+
+    // displaytext.contains()
+
+    // /
+    // // print(arr);
+    // for (var i = 0; i < itemss.length; i++) {
+    //   for (var j = 0; j< arr.length; j++) {
+    //     if (itemss[i]==arr[j]) {
+    //       print(itemss[i]);
+    //       // Get.to(ObjectDetectorView(outputvoice:,));
+
+    //     }
+
+    //   }
+
+    // }
+
     contoler.update();
     // List? a;
 
@@ -69,26 +116,23 @@ class SpeechToText extends StatelessWidget {
   void _stopListening() async {
     await _speech.stop();
     contoler.update();
-    
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text(
-          "Speech to Text",
+          "Talk",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.black,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: GetBuilder<Speechtextcontrole>(
-        builder: (controller) => 
-        AvatarGlow(
+        builder: (controller) => AvatarGlow(
           animate: _speech.isListening,
           glowColor: Colors.red,
           duration: Duration(milliseconds: 2000),
@@ -106,20 +150,18 @@ class SpeechToText extends StatelessWidget {
           ),
         ),
       ),
-      
       body: GetBuilder<Speechtextcontrole>(
         builder: (controller) => SingleChildScrollView(
           reverse: true,
           child: Container(
             padding: const EdgeInsets.all(50),
-            child: Text(
-              displaytext,
-              overflow: TextOverflow.clip,
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25),
-            ),
+            child: Text(displaytext,
+                overflow: TextOverflow.clip,
+                style: GoogleFonts.oregano(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
+                    fontSize: 25)),
           ),
         ),
       ),

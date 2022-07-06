@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 import 'package:google_mlkit_commons/google_mlkit_commons.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:octavision/controller/textrecogtion_controller.dart';
 import 'package:octavision/spinneranimation.dart';
 
 import '../main.dart';
@@ -32,6 +34,7 @@ class CameraView extends StatefulWidget {
 }
 
 class _CameraViewState extends State<CameraView> {
+  final controlerr=Get.put(Textrecoginsecontroler());
   ScreenMode _mode = ScreenMode.liveFeed;
   CameraController? _controller;
   File? _image;
@@ -72,7 +75,9 @@ class _CameraViewState extends State<CameraView> {
   @override
   void dispose() {
     _stopLiveFeed();
+    
     super.dispose();
+   
   }
 
   @override
@@ -178,6 +183,7 @@ class _CameraViewState extends State<CameraView> {
   Future _stopLiveFeed() async {
     await _controller?.stopImageStream();
     await _controller?.dispose();
+     controlerr.controller.initialize();
     _controller = null;
   }
 

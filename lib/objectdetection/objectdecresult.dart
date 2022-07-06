@@ -256,6 +256,7 @@ class CameraView extends StatefulWidget {
 }
 
 class _CameraViewState extends State<CameraView> {
+  final controlerr=Get.put(Textrecoginsecontroler());
   ScreenMode _mode = ScreenMode.liveFeed;
   CameraController? _controller;
   File? _image;
@@ -306,22 +307,7 @@ class _CameraViewState extends State<CameraView> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(widget.title),
-        // actions: [
-        //   if (_allowPicker)
-        //     Padding(
-        //       padding: EdgeInsets.only(right: 20.0),
-        //       child: GestureDetector(
-        //         onTap: _switchScreenMode,
-        //         child: Icon(
-        //           _mode == ScreenMode.liveFeed
-        //               ? Icons.photo_library_outlined
-        //               : (Platform.isIOS
-        //                   ? Icons.camera_alt_outlined
-        //                   : Icons.camera),
-        //         ),
-        //       ),
-        //     ),
-        // ],
+     
       ),
       body: _body(),
       // floatingActionButton: _floatingActionButton(),
@@ -362,10 +348,7 @@ class _CameraViewState extends State<CameraView> {
     }
 
     final size = MediaQuery.of(context).size;
-    // calculate scale depending on screen and camera ratios
-    // this is actually size.aspectRatio / (1 / camera.aspectRatio)
-    // because camera preview size is received as landscape
-    // but we're calculating for portrait orientation
+    
     var scale = size.aspectRatio * _controller!.value.aspectRatio;
 
     // to prevent scaling down, invert the value
@@ -493,7 +476,7 @@ class _CameraViewState extends State<CameraView> {
     final camera = cameras[_cameraIndex];
     _controller = CameraController(
       camera,
-      ResolutionPreset.high,
+      ResolutionPreset.medium,
       enableAudio: false,
     );
     _controller?.initialize().then((_) {
@@ -517,6 +500,7 @@ class _CameraViewState extends State<CameraView> {
   Future _stopLiveFeed() async {
     await _controller?.stopImageStream();
     await _controller?.dispose();
+     controlerr.controller.initialize();
     _controller = null;
   }
 

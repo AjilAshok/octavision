@@ -9,6 +9,7 @@ import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:octavision/barcode/barcodecamera.dart';
 
 import 'package:octavision/controller/textrecogtion_controller.dart';
+import 'package:octavision/speack.dart';
 // import 'package:objectdection/painters/objectdector_painer.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -27,18 +28,22 @@ class _Barcodeview extends State<Barcodeview> {
   CustomPaint? _customPaint;
   String? _text;
   String result = '';
+   String voices="Barcode";
+  final textvoice=Voicespeeech();
 
   @override
   void initState() {
     super.initState();
 
     _initializeDetector();
+    textvoice.speack(voices);
   }
 
   @override
   void dispose() {
     _canProcess = false;
     barcodeScanner.close();
+    textvoice.speackvoice.stop();
     super.dispose();
   }
 

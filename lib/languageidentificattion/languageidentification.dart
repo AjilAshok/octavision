@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 // import 'package:get/get_state_manager/src/simple/get_state.dart';
 // import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:octavision/controller/languageidentficationcontroller.dart';
+import 'package:octavision/speack.dart';
 
 class LanguageIdentifierView extends StatelessWidget {
 
@@ -14,7 +15,8 @@ class LanguageIdentifierView extends StatelessWidget {
 
  
   final languaguecontrol=Get.put(Languageidentificationcontoller());
- 
+ final voice=Voicespeeech();
+ String voicesond="Language";
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,14 @@ class LanguageIdentifierView extends StatelessWidget {
         ),
         SizedBox(height: 15),
         GetBuilder<Languageidentificationcontoller>(
+          initState:(state) {
+            voice.speack(voicesond);
+
+            
+          },
+          dispose:(state){
+            voice.speackvoice.stop();
+          } ,
           builder: (controllers) => 
           controllers.identifiedLanguage == ''
               ? Container()

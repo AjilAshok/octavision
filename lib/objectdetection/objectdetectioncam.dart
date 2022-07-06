@@ -25,6 +25,8 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
   bool _isBusy = false;
   CustomPaint? _customPaint;
   String? _text;
+  String voices="Find Things";
+  final textvoice=Voicespeeech();
   
   
   List<String> results = [];
@@ -34,6 +36,8 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
     super.initState();
 
     _initializeDetector(DetectionMode.stream);
+    textvoice.speack(voices);
+    
   }
 
   @override
@@ -41,6 +45,7 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
     _canProcess = false;
     _objectDetector.close();
     // results.clear();
+    textvoice.speackvoice.stop();
     super.dispose();
   }
 
@@ -65,7 +70,7 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
   void _onScreenModeChanged(ScreenMode mode) {
     switch (mode) {
       case ScreenMode.gallery:
-        _initializeDetector(DetectionMode.singleImage);
+        // _initializeDetector(DetectionMode.singleImage);
         return;
 
       case ScreenMode.liveFeed:
@@ -108,12 +113,12 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
       _customPaint = CustomPaint(painter: painter);
       for (DetectedObject obj in objects) {
         results.clear();
-        //  print(   obj.labels.map((e) => e.text));
+       
         setState(() {
           results.add(obj.labels.map((e) => e.text).toString());
-          // print(results);
+          
           var res = obj.labels.map((e) => e.text.toLowerCase());
-          print(res);
+          
           
           var v1 = res.contains(widget.outputvoice);
           print(v1);

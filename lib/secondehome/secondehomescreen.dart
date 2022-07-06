@@ -56,7 +56,7 @@ class SecondhomeScreen extends StatelessWidget {
         Currencydection(),
         Facedetction_camera(),
         Imagelabel_camera(),
-        Barcodeview()
+        
       ],
     )));
   }

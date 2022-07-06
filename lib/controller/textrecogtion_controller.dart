@@ -40,38 +40,16 @@ class Textrecoginsecontroler extends GetxController {
     controller.dispose();
     //  (WidgetsBinding.instance).removeObserver;
     
-    textvoice.speackvoice.stop();
+    // textvoice.speackvoice.stop();
   
   }
 
-  void initializeCamera() async {
-    try {
-      final CameraController cameraController = CameraController(
-        
-        cameras[0],
-        ResolutionPreset.medium,
-      );
-
-      controller = cameraController;
-      update();
-     
-      controller.initialize();
-    
-      update();
-      
-    } on CameraException   catch (e) {
-      
-
-      print("33333333333333333333");
-      print(e);
-      update();
-    }
-  }
+  //
   Future startLiveFeed() async {
     final camera = cameras[0];
     controller = CameraController(
       camera,
-      ResolutionPreset.high,
+      ResolutionPreset.medium,
       enableAudio: false,
     );
     controller.initialize().then((_) {

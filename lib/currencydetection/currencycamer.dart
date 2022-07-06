@@ -6,6 +6,7 @@ import 'package:octavision/currencydetection/displayscreen.dart';
 import 'package:octavision/facedetction/facedectionresult.dart';
 import 'package:octavision/main.dart';
 import 'package:octavision/speack.dart';
+import 'package:octavision/spinneranimation.dart';
 
 class Currencydection extends StatelessWidget {
    Currencydection({ Key? key }) : super(key: key);
@@ -24,7 +25,7 @@ class Currencydection extends StatelessWidget {
         title: Text("Currency "),),
       body: GetBuilder<Textrecoginsecontroler>(
         initState:(state) {
-          //  currencyControler.controller!.initialize();
+           currencyControler.startLiveFeed();
           currcenyvoice.speack(facespeech);
           
         }, 
@@ -55,12 +56,7 @@ class Currencydection extends StatelessWidget {
                   ],
                 ),
             )
-            : Container(
-                color: Colors.black,
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
+            :const Spinner_lodading()
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:octavision/controller/textrecogtion_controller.dart';
 import 'package:octavision/facedetction/facedectionresult.dart';
 import 'package:octavision/main.dart';
 import 'package:octavision/speack.dart';
+import 'package:octavision/spinneranimation.dart';
 
 class Facedetction_camera extends StatelessWidget {
   Facedetction_camera({
@@ -31,7 +32,7 @@ class Facedetction_camera extends StatelessWidget {
           facevoice.speackvoice.stop();
         },
         initState: (state) {
-          // facedectioncontroler.controller!.initialize();
+          facedectioncontroler.startLiveFeed();
 
           facevoice.speack(facespeech);
         },
@@ -52,7 +53,7 @@ class Facedetction_camera extends StatelessWidget {
               }
             });
           },
-          child: controllers.controller.value.isInitialized
+          child: controllers.controller.value.isInitialized 
               ? Stack(
                   fit: StackFit.expand,
                   children: [
@@ -60,12 +61,9 @@ class Facedetction_camera extends StatelessWidget {
                   
                   ],
                 )
-              : Container(
-                  color: Colors.black,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
+              : 
+                 const Spinner_lodading(),
+                
         ),
       ),
     );
