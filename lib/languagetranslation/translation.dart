@@ -8,7 +8,7 @@ import 'package:octavision/controller/translationcontroler.dart';
 import 'package:octavision/speack.dart';
 
 class Translationmodel extends StatelessWidget {
-  Translationmodel({Key? key}) : super(key: key);
+  Translationmodel({Key? key,required this.text}) : super(key: key);
 
   var items = [
     "Afrikaans",
@@ -72,9 +72,10 @@ class Translationmodel extends StatelessWidget {
     "Welsh",
   ];
 
-  final _controller = TextEditingController();
+  // final _controller = TextEditingController();
   final languagvoice = Voicespeeech();
   String languagespechh = "Translation";
+   String text ;
 
   final translatincontroler = Get.put(Translationmodelcontroler());
 
@@ -96,52 +97,58 @@ class Translationmodel extends StatelessWidget {
           children: [
             SizedBox(height: 30),
             GetBuilder<Translationmodelcontroler>(
-                builder: (controller) => Center(
-                    child:
-                        Text('Enter text (source: ${controller.dropvalue})'))),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: GetBuilder<Translationmodelcontroler>(
                 initState: (state) {
                   languagvoice.speack(languagespechh);
                 },
-                 dispose: (state) {
-          languagvoice.speackvoice.stop();
-          
-        },
-                builder: (controller) => DropdownButton(
-                    value: controller.dropvalue,
-                    items: items.map((String item) {
-                      return DropdownMenuItem(
-                        value: item,
-                        child: Text(item),
-                      );
-                    }).toList(),
-                    onChanged: (String? newvalues) {
-                      // setState(() {
-                      controller.index = items.indexOf(newvalues.toString());
-                      print(newvalues);
+                dispose: (state) {
+                  languagvoice.speackvoice.stop();
+                },
+                builder: (controller) => Center(
+                    child:
+                        Text('Enter text (source: ${controller.dropvalue})'))),
+            // Padding(
+            //   padding: const EdgeInsets.all(20.0),
+            //   child: GetBuilder<Translationmodelcontroler>(
+            //     // initState: (state) {
+            //     //   languagvoice.speack(languagespechh);
+            //     // },
+            //     // dispose: (state) {
+            //     //   languagvoice.speackvoice.stop();
+            //     // },
+            //     builder: (controller) => DropdownButton(
+            //         value: controller.dropvalue,
+            //         items: items.map((String item) {
+            //           return DropdownMenuItem(
+            //             value: item,
+            //             child: Text(item),
+            //           );
+            //         }).toList(),
+            //         onChanged: (String? newvalues) {
+            //           // setState(() {
+            //           controller.index = items.indexOf(newvalues.toString());
+            //           print(newvalues);
 
-                      controller.dropvalue = newvalues.toString();
-                      controller.update();
-                      // });
-                    }),
-              ),
-            ),
+            //           controller.dropvalue = newvalues.toString();
+            //           controller.update();
+            //           // });
+            //         }),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                    border: Border.all(
-                  width: 2,
-                )),
-                child: TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(border: InputBorder.none),
-                  maxLines: null,
-                ),
-              ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                    width: 2,
+                  )),
+                  child: Text(text)
+                  // TextField(
+                  //   controller: _controller,
+                  //   decoration: InputDecoration(border: InputBorder.none),
+                  //   maxLines: null,
+                  // ),
+                  ),
             ),
             GetBuilder<Translationmodelcontroler>(
                 builder: (controller) => Center(
@@ -190,7 +197,7 @@ class Translationmodel extends StatelessWidget {
               GetBuilder<Translationmodelcontroler>(
                 builder: (controller) => ElevatedButton(
                     onPressed: () {
-                      controller.translateText(_controller.text);
+                      controller.translateText(text);
                     },
                     child: const Text('Translate')),
               )
@@ -200,6 +207,4 @@ class Translationmodel extends StatelessWidget {
       ),
     ));
   }
-
-  
 }

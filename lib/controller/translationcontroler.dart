@@ -6,7 +6,7 @@ class Translationmodelcontroler extends GetxController{
   dynamic targeindex = 0;
    String? langaue;
 
-  String dropvalue = "Afrikaans";
+  String dropvalue = "English";
 
   String dropvalue1 = "Afrikaans";
   final drop = TranslateLanguage.values;

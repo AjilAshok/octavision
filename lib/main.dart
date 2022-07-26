@@ -8,6 +8,7 @@ List<CameraDescription> cameras = [];
 int? initScreen;
 Future< void> main()async {
   WidgetsFlutterBinding.ensureInitialized();
+ 
   cameras = await availableCameras();
   SharedPreferences preferences=await SharedPreferences.getInstance();
   initScreen =await preferences.getInt('initScreen');

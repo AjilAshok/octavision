@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "963697642568",
+    "project_id": "soul-724d3",
+    "storage_bucket": "soul-724d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963697642568:android:257d2b9cd118e649209c7d",
+        "android_client_info": {
+          "package_name": "in.octavision.soul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963697642568-dvhr83o3r0iceqdka1m2vau0k9it9rnv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.octavision.soul",
+            "certificate_hash": "74d9ee9a79f7c104635d1b9e175add5bcdac603c"
+          }
+        },
+        {
+          "client_id": "963697642568-2ivcmmf99v1p2dlua148dthicdbn5s9i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8IjTS83kC8kKl6UhiivOF4HUcbLFElOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963697642568-2ivcmmf99v1p2dlua148dthicdbn5s9i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

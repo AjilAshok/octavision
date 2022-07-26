@@ -7,15 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:octavision/controller/textrecoginseresult.dart';
+import 'package:octavision/languagetranslation/translation.dart';
+import 'package:octavision/spinneranimation.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 class TextreconiseResult extends StatelessWidget {
   final String imagePath;
-   TextreconiseResult({Key? key, required this.imagePath})
-      : super(key: key);
-
+  TextreconiseResult({Key? key, required this.imagePath}) : super(key: key);
 
   late final String _imagePath;
   final FlutterTts vioice = FlutterTts();
@@ -40,8 +40,8 @@ class TextreconiseResult extends StatelessWidget {
 
     final Size imageSize = await completer.future;
     // setState(() {
-      _imageSize = imageSize;
-      textrrecoginseresultctrl.update();
+    _imageSize = imageSize;
+    textrrecoginseresultctrl.update();
     // });
   }
 
@@ -50,14 +50,14 @@ class TextreconiseResult extends StatelessWidget {
     final inputImage = InputImage.fromFilePath(_imagePath);
     final RecognizedText textex = await textrec.processImage(inputImage);
     // setState(() {
-      barcoderesult = textex.text;
+    barcoderesult = textex.text;
 
-      if (barcoderesult.isNotEmpty) {
-        speak(text: barcoderesult);
-      } else {
-        speak(text: "No Result Please try again");
-      }
-      textrrecoginseresultctrl.update();
+    if (barcoderesult.isNotEmpty) {
+      speak(text: barcoderesult);
+    } else {
+      speak(text: "No Result Please try again");
+    }
+    textrrecoginseresultctrl.update();
     // });
   }
 
@@ -70,89 +70,87 @@ class TextreconiseResult extends StatelessWidget {
     await vioice.speak(text);
   }
 
-  
-  final textrrecoginseresultctrl=Get.put(Textrecoginseresultcontroler());
+  final textrrecoginseresultctrl = Get.put(Textrecoginseresultcontroler());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title:const Text("Image Details"),
+        title: const Text("Image Details"),
       ),
       body: GetBuilder<Textrecoginseresultcontroler>(
-        dispose: (state) {
-          textrec.close();
-          vioice.stop();
-        },
-        initState: (state) {
-          _imagePath=imagePath;
-         
-          _recognizeImage();
-         
-        },
-        builder: (controller) => 
-    _imageSize != null
-            ? Stack(
-                children: [
-                  Container(
-                    width: double.maxFinite,
-                    color: Colors.black,
-                    child: AspectRatio(
-                      aspectRatio: _imageSize!.aspectRatio,
-                      child: Image.file(
-                        File(_imagePath),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Card(
-                      elevation: 8,
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(bottom: 8.0),
-                              child: Text(
-                                "Result",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: double.infinity,
-                              height: 120,
-                              child: SingleChildScrollView(
-                                child:barcoderesult.isNotEmpty
-                                    ? Text(barcoderesult)
-      
-                                    
-      
-                                    : Text("No Result Please try again"),
-                              ),
-                            ),
-                            
-                          ],
+          dispose: (state) {
+            textrec.close();
+            vioice.stop();
+          },
+          initState: (state) {
+            _imagePath = imagePath;
+
+            _recognizeImage();
+          },
+          builder: (controller) => _imageSize != null
+              ? Stack(
+                  children: [
+                    Container(
+                      width: double.maxFinite,
+                      color: Colors.black,
+                      child: AspectRatio(
+                        aspectRatio: _imageSize!.aspectRatio,
+                        child: Image.file(
+                          File(_imagePath),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              )
-            : Container(
-                color: Colors.blue,
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-      ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Card(
+                        elevation: 8,
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(bottom: 8.0),
+                                child: Text(
+                                  "Result",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: double.infinity,
+                                height: 120,
+                                child: SingleChildScrollView(
+                                  child: barcoderesult.isNotEmpty
+                                      ? Text(barcoderesult)
+                                      : const Text(
+                                          "No Result Please try again"),
+                                ),
+                              ),
+                              Visibility(
+                                visible: barcoderesult.isNotEmpty,
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      Get.to(Translationmodel(
+                                        text: barcoderesult,
+                                      ));
+                                    },
+                                    child: const Text("Translate")),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              : const Spinner_lodading()),
     );
   }
 }

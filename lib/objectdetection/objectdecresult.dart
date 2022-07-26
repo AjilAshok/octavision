@@ -476,7 +476,7 @@ class _CameraViewState extends State<CameraView> {
     final camera = cameras[_cameraIndex];
     _controller = CameraController(
       camera,
-      ResolutionPreset.medium,
+      ResolutionPreset.high,
       enableAudio: false,
     );
     _controller?.initialize().then((_) {
@@ -500,7 +500,7 @@ class _CameraViewState extends State<CameraView> {
   Future _stopLiveFeed() async {
     await _controller?.stopImageStream();
     await _controller?.dispose();
-     controlerr.controller.initialize();
+    await controlerr.controller.initialize();
     _controller = null;
   }
 

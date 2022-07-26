@@ -57,26 +57,7 @@ class SpeechToText extends StatelessWidget {
     displaytext = result.recognizedWords;
     contoler.update();
     var arr = displaytext.split(' ');
-    //  var key=itemss.map((key, value) => null)
-    // // Map<String, List<String>> typedMap;
-    // itemss.forEach((key, value) {
-    //   print("{$key,$value}");
-    // for (var i = 0; i < arr.length; i++) {
-    //   var a = itemss.containsValue(arr[i]);
-    //   print(a);
-    // }
-
-    // });
-
-// String keys =itemss.containsKey(arr).toString();
-// print("8**************");
-// print(keys);
-// print("8**************");
-// String  value=itemss[keys];
-// if (itemss.containsValue(key)) {
-//   // print(key);
-
-    // // print(arr);
+    
     for (var i = 0; i < itemss.length; i++) {
       for (var j = 0; j< arr.length; j++) {
         if (itemss[i]==arr[j]) {
@@ -85,32 +66,16 @@ class SpeechToText extends StatelessWidget {
 
         }
 
+        
+
       }
+      
 
     }
 
-// }
-
-    // displaytext.contains()
-
-    // /
-    // // print(arr);
-    // for (var i = 0; i < itemss.length; i++) {
-    //   for (var j = 0; j< arr.length; j++) {
-    //     if (itemss[i]==arr[j]) {
-    //       print(itemss[i]);
-    //       // Get.to(ObjectDetectorView(outputvoice:,));
-
-    //     }
-
-    //   }
-
-    // }
 
     contoler.update();
-    // List? a;
-
-    // });
+   
   }
 
   void _stopListening() async {
