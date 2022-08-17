@@ -27,8 +27,10 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo buildname=1.2.7
-
+        run: sh ./.github/workflows/version.sh
+        env:
+          buildnumber: ${{GITHUB_RUN_NUMBER}}
+        
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
@@ -36,13 +38,13 @@ jobs:
           echo test, and deploy your project.
       - name: Set Timezone
         uses: szenius/set-timezone@v1.0
-      - name: run java version?
-        env:
-          buildnumber: "${{GITHUB_RUN_NUMBER}}
+      - name: run java version
+          
         run: |
          
           #  echo
            echo 3.Is git version?
+           echo 
            git --version
            echo $GITHUB_RUN_NUMBER
           #  $GITHUB_RUN_NUMBER
