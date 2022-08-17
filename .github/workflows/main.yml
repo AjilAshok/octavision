@@ -44,7 +44,7 @@ jobs:
            git --version
            echo $GITHUB_RUN_NUMBER
            $buildnumber=$GITHUB_RUN_NUMBER
-           env
+           
       
   
     
