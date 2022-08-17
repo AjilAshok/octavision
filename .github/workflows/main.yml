@@ -37,4 +37,5 @@ jobs:
           echo test, and deploy your project.
           java --version
           git --version
+          $GITHUB_RUN_NUMBER
           
