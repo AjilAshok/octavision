@@ -37,6 +37,8 @@ jobs:
       - name: Set Timezone
         uses: szenius/set-timezone@v1.0
       - name: run java version?
+        env:
+          builnumber:"${{GITHUB_RUN_NUMBER}}"
         run: |
          
           #  echo
@@ -44,6 +46,7 @@ jobs:
            git --version
            echo $GITHUB_RUN_NUMBER
           #  $GITHUB_RUN_NUMBER
+          echo $builnumber
            
       
   
