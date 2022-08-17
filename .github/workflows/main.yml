@@ -38,7 +38,7 @@ jobs:
         uses: szenius/set-timezone@v1.0
       - name: run java version?
         run: |
-           java --version
+         
            echo
            echo 3.Is git version?
            git --version
