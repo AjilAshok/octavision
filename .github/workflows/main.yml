@@ -37,6 +37,8 @@ jobs:
       - name: Set Timezone
         uses: szenius/set-timezone@v1.0
       - name: run java version?
+        env:
+          buildnumber: "${{GITHUB_RUN_NUMBER}}
         run: |
          
           #  echo
