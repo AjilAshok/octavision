@@ -39,11 +39,11 @@ jobs:
       - name: run java version?
         run: |
          
-           echo
+          #  echo
            echo 3.Is git version?
            git --version
            echo $GITHUB_RUN_NUMBER
-           $buildnumber=$GITHUB_RUN_NUMBER
+          #  $buildnumber=$GITHUB_RUN_NUMBER
            
       
   
