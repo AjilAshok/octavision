@@ -40,6 +40,7 @@ jobs:
           java --version
           git --version
           echo $(date +'%d/%m/%Y  %r')
+          build name=1.2.7 -- buildnumber=$GITHUB_RUN_NUMBER
   
       
   
