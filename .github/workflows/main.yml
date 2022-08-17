@@ -42,7 +42,8 @@ jobs:
            echo
            echo 3.Is git version?
            git --version
-           echo buildnumber=$GITHUB_RUN_NUMBER
+           echo $GITHUB_RUN_NUMBER
+           $buildnumber=$GITHUB_RUN_NUMBER
            env
       
   
