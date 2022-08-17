@@ -1,3 +1,3 @@
-# --version $buildnumber
+ $buildnumber
 echo "helo"
 
