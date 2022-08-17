@@ -43,7 +43,7 @@ jobs:
            echo 3.Is git version?
            git --version
            echo $GITHUB_RUN_NUMBER
-           $GITHUB_RUN_NUMBER
+          #  $GITHUB_RUN_NUMBER
            
       
   
