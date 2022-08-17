@@ -28,6 +28,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo $GITHUB_RUN_NUMBER
+      - name: run soingle fli
+        run: echo $GITHUB_RUN_NUMBER
         
 
       # Runs a set of commands using the runners shell
