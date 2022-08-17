@@ -39,6 +39,6 @@ jobs:
           echo test, and deploy your project.
           java --version
           git --version
-          echo $(date +'%d/%m/%Y/%r')
+          echo $(date +'%d/%m/%Y  %r')
         
           
