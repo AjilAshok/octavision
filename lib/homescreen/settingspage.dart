@@ -29,7 +29,7 @@ class Settings extends StatelessWidget {
               color: Colors.black,
             )),
         elevation: 0,
-        title: const Text(Version.version
+        title:  Text(Version.version.toString()
           ,
           style: TextStyle(color: Colors.black),
         ),
