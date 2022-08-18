@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:octavision/constant/version.dart';
 
 import 'package:octavision/homescreen/widgets/contactpage.dart';
 
 class Settings extends StatelessWidget {
   Settings({Key? key}) : super(key: key);
   String copytext = "octavision.t@gmail.com";
+  Version ver=Version();
   
 
   @override
@@ -26,8 +28,8 @@ class Settings extends StatelessWidget {
               color: Colors.black,
             )),
         elevation: 0,
-        title: const Text(
-          "Settings",
+        title: const Text(Version.version
+          ,
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.black38,
