@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       platform: assure
-      region: 
+      region: $GITHUB_RUN_NUMBER
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -48,7 +48,7 @@ jobs:
          
           #  echo
            echo 3.Is git version?
-           echo region="cent"
+           echo 
            git --version
            echo $GITHUB_RUN_NUMBER
            echo "The region is $region"
