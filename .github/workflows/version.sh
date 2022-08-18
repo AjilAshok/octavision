@@ -6,10 +6,9 @@ echo 'helo world'>file
 version==$GITHUB_RUN_NUMBER
 echo $version
 output='$command'
-"
-class version{
-    static constant string name=$version;
-}
-"
+
+
+
+
 
 
