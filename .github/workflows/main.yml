@@ -43,7 +43,7 @@ jobs:
         
         run: |
           sh ./.github/workflows/version.sh
-          echo githubnumber
+          echo $githubnumber
           # echo githubnumber
           # echo Add other actions to build,
           # echo test, and deploy your project.

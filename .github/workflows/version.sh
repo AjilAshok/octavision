@@ -2,9 +2,9 @@
 #  file=lib/constant/version.dart
 # echo file.version
 # echo $GITHUB_RUN_NUMBER >file.version
-echo 'helo world'>file
-echo  $version=$GITHUB_RUN_NUMBER
-echo $version
+# echo 'helo world'>file
+# echo  $version=$GITHUB_RUN_NUMBER
+# echo $version
 output='$command'
 
 
