@@ -19,6 +19,9 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    env:
+      platform: assure
+      region: central
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -32,8 +35,7 @@ jobs:
         
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-         env:
-           GITHUB_RUN_NUMBER: ${{GITHUB_RUN_NUMBER}}
+        
         run: |
           sh ./.github/workflows/version.sh
           echo Add other actions to build,
@@ -49,6 +51,7 @@ jobs:
            echo 
            git --version
            echo $GITHUB_RUN_NUMBER
+           echo "The region is $region"
           #  $GITHUB_RUN_NUMBER
            
       

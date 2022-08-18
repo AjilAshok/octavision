@@ -1,5 +1,5 @@
 class Version{
 
 static String version='';
-static String builnumber='{{buildnumber}}';
+static String builnumber='';
 }
