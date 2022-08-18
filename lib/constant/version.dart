@@ -1,6 +1,6 @@
 
 class Version{
 
-static  String? version;
+static const  String? version='ajil';
 // static const String buildnumber=String.fromEnvironment('buildnumber');
 }
