@@ -15,6 +15,7 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(Version.version);
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.grey,
