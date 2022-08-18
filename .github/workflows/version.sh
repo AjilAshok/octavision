@@ -1,3 +1,4 @@
  $GITHUB_RUN_NUMBER
-echo "helo"
+ 
+echo "helo $GITHUB_RUN_NUMBER"
 
