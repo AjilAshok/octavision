@@ -2,5 +2,5 @@
  file="lib/constant/version.dart"
 echo $GITHUB_RUN_NUMBER
 printf "ajil" >>file.version
-echo ${{file.version}}
+# echo ${{file.version}}
 
