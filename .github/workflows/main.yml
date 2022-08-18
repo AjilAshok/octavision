@@ -22,7 +22,7 @@ jobs:
     env:
       platform: assure
       region: GITHUB_RUN_NUMBER
-      buidnumber: ${{buidnumber}}
+      # buidnumber: ${{buidnumber}}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
