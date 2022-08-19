@@ -43,7 +43,7 @@ jobs:
         run: |
           sh ./.github/workflows/version.sh
           # [$ githubnumber=$GITHUB_RUN_NUMBER] 
-          echo .env.githubnumber
+          echo $.env.githubnumber
           # echo Add other actions to build,
           # echo test, and deploy your project.
       # - name: Set Timezone
