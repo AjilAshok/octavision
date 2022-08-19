@@ -32,6 +32,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
+        with: 
+          path: 'lib/constant/version.dart'
         run: echo $GITHUB_RUN_NUMBER
         env:
           githubnumber: $GITHUB_RUN_NUMBER
