@@ -11,6 +11,7 @@ class Settings extends StatelessWidget {
   Settings({Key? key}) : super(key: key);
   String copytext = "octavision.t@gmail.com";
   Version ver=Version();
+  // var gitnumber=gitnumber;
   
 
   @override
