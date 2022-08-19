@@ -16,7 +16,7 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(Version.version);
+    print(Version.versionnumber);
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.grey,
@@ -30,7 +30,7 @@ class Settings extends StatelessWidget {
               color: Colors.black,
             )),
         elevation: 0,
-        title:  Text(Version.version.toString()
+        title:  Text(Version.versionnumber.toString()
           ,
           style: TextStyle(color: Colors.black),
         ),
