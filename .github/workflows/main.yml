@@ -31,7 +31,7 @@ jobs:
       - name: Run a one-line script
         run: echo $GITHUB_RUN_NUMBER
         env:
-          githubnumber: $ {{GITHUB_RUN_NUMBER}}
+          githubnumber: $GITHUB_RUN_NUMBER
 
        
         
@@ -42,7 +42,7 @@ jobs:
         
         run: |
           sh ./.github/workflows/version.sh
-          printenv githubnumber
+          printenv $githubnumber
           
           
          
