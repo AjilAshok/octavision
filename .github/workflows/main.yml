@@ -44,7 +44,7 @@ jobs:
         
         run: |
           sh ./.github/workflows/version.sh
-          echo build=${{githubnumber}} >> .env
+          [$ githubnumber='ww'] && echo $githubnumber > .env
           # echo githubnumber
           # echo Add other actions to build,
           # echo test, and deploy your project.
