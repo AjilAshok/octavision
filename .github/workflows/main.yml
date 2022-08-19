@@ -44,7 +44,7 @@ jobs:
         
         run: |
           sh ./.github/workflows/version.sh
-          [$ githubnumber=$GITHUB_RUN_NUMBER] 
+          # [$ githubnumber=$GITHUB_RUN_NUMBER] 
           # echo githubnumber
           # echo Add other actions to build,
           # echo test, and deploy your project.
