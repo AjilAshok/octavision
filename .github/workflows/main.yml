@@ -9,7 +9,6 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-  # paths: 'lib/constant/version.dart'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,12 +31,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        with: 
-          path: 'lib/constant/version.dart'
         run: echo $GITHUB_RUN_NUMBER
         env:
           githubnumber: $GITHUB_RUN_NUMBER
-          
         
        
         
@@ -47,7 +43,8 @@ jobs:
         
         run: |
           sh ./.github/workflows/version.sh
-         
+          echo $githubnumber
+          # echo githubnumber
           # echo Add other actions to build,
           # echo test, and deploy your project.
       # - name: Set Timezone
