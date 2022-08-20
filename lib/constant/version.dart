@@ -9,6 +9,6 @@ import 'dart:io';
 class Version{
   
 
-   static String? versionnumber=Platform.environment['GITHUB_RUN_NUMBER'];
+   static String? versionnumber="";
 // static const String buildnumber=String.fromEnvironment(g);
 }
