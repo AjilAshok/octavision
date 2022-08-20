@@ -45,6 +45,7 @@ jobs:
           # echo $githubnumber
           # VER=$(cat githubnumber)
           echo "VERSION=$VER" >> $GITHUB_ENV 
+          echo $VERSION
           
           
          
