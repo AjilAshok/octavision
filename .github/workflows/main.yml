@@ -42,7 +42,9 @@ jobs:
         
         run: |
           sh ./.github/workflows/version.sh
-          echo env.githubnumber
+          echo $githubnumber
+          VER=$(cat VERSION)
+          echo "VERSION=$VER" >> $GITHUB_ENV 
           
           
          
