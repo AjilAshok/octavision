@@ -4,7 +4,7 @@ file='./lib/constant/version.dart'
 echo $GITHUB_RUN_NUMBER
 
  githubnumber=$GITHUB_RUN_NUMBER
- $RUNNER_NAME
+echo $RUNNER_NAME
 echo $GRADLE_HOME
 
 echo $githubnumber
