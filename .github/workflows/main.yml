@@ -44,7 +44,7 @@ jobs:
           sh ./.github/workflows/version.sh
           # echo $githubnumber
           # VER=$(cat githubnumber)
-          env
+          
           
           
          
