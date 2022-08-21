@@ -4,6 +4,7 @@ file='./lib/constant/version.dart'
 echo $GITHUB_RUN_NUMBER
 
  githubnumber=$GITHUB_RUN_NUMBER
+ 
 
 echo $githubnumber
   
