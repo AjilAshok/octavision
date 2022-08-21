@@ -8,7 +8,7 @@ echo $RUNNER_NAME
 echo $GRADLE_HOME
 
 echo $githubnumber
-$ ls
+$ls
 
 
 
