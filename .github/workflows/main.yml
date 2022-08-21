@@ -45,8 +45,8 @@ jobs:
           sh ./.github/workflows/version.sh
           # echo $githubnumber
           # VER=$(cat githubnumber)
-          echo "VERSION=$VER" >> $GITHUB_ENV 
-          echo $TEXT
+          ${{ env.USER }}/${{ env.REPO }}:${{ env.VERSION }}
+        
           
           
          
