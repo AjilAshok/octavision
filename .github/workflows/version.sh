@@ -5,7 +5,7 @@ echo $GITHUB_RUN_NUMBER
 
  githubnumber=$GITHUB_RUN_NUMBER
  $RUNNER_NAME
- $GITHUB_ACTIONS
+echo $GRADLE_HOME
 
 echo $githubnumber
   
