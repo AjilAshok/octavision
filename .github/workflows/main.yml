@@ -30,9 +30,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo $GITHUB_RUN_NUMBER
-        env:
-          global: 
-            - gitnumber=$GITHUB_RUN_NUMBER
+       
+         
 
        
         
@@ -45,8 +44,9 @@ jobs:
           sh ./.github/workflows/version.sh
           # echo $githubnumber
           # VER=$(cat githubnumber)
+          echo "VERSION=$VER" >> $GITHUB_ENV 
+          echo $TEXT
           ${{ env.USER }}/${{ env.REPO }}:${{ env.VERSION }}
-        
           
           
          
