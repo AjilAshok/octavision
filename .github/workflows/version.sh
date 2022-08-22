@@ -10,7 +10,9 @@ echo $i
 echo $githubnumber
 File=$(ls *.txt)
 echo $File
-echo  "heloo" >> "test.txt"
+mkdir hello
+touch "hello/world.txt"
+echo  "heloo" >> "hello/world.txt"
 echo "Created $File"
 
 
