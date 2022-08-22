@@ -8,12 +8,7 @@ echo $RUNNER_NAME
 echo $i
 
 echo $githubnumber
-File=$(ls *.txt)
-echo $File
-mkdir hello
-touch "hello/world.txt"
-echo  "heloo" >> "hello/world.txt"
-echo "Created $File"
+sed -i 's/AJIL/JOE/g' *
 
 
 
