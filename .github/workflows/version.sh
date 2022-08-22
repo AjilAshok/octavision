@@ -11,7 +11,7 @@ echo $githubnumber
 touch version.txt
 mkdir version
 touch "version/buildnumber.txt"
-echo "helo ">>"version/buildnumber.txt"
+echo "helo " >> "version/buildnumber.txt"
 echo "Created version/buildnumber.txt"
 
 
