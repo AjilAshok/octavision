@@ -9,7 +9,7 @@ echo $i
 
 echo $githubnumber
 File=$(ls *.txt)
-echo File
+echo $File
 
 
 
