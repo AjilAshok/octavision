@@ -10,7 +10,7 @@ echo $i
 echo $githubnumber
 File=$(ls *.txt)
 echo $File
-echo  "heloo" >> $File
+echo  "heloo" >> "test.txt"
 echo "Created $File"
 
 
