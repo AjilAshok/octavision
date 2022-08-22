@@ -1,15 +1,14 @@
 
 # echo "{name}={value}" >> $GITHUB_RUN_NUMBER
 echo $GITHUB_RUN_NUMBER
-fnmae=$ (cat version.txt)
-echo $fnmae
+FILE=$(ls *.txt)
 
  githubnumber=$GITHUB_RUN_NUMBER
 echo $RUNNER_NAME
-echo $GRADLE_HOME
+echo $FILE
 
 echo $githubnumber
-$ls
+touch version.txt
 
 
 
