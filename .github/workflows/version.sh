@@ -1,7 +1,7 @@
 
 # echo "{name}={value}" >> $GITHUB_RUN_NUMBER
 echo $GITHUB_RUN_NUMBER
-FILE=$(version.txt)
+FILE=$(ls *.txt)
 
  githubnumber=$GITHUB_RUN_NUMBER
 echo $RUNNER_NAME
