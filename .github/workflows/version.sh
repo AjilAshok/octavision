@@ -1,8 +1,8 @@
 
 # echo "{name}={value}" >> $GITHUB_RUN_NUMBER
-file= cat version.txt
 echo $GITHUB_RUN_NUMBER
-echo $file
+fnmae= $(cat version.txt)
+echo $fnmae
 
  githubnumber=$GITHUB_RUN_NUMBER
 echo $RUNNER_NAME
