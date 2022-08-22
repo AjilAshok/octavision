@@ -8,7 +8,7 @@ echo $RUNNER_NAME
 echo $i
 
 echo $githubnumber
-sed -i 's/AJIL/JOE/g' *
+sed -i 's/AJIL/JOE/g' lib/*
 
 
 
