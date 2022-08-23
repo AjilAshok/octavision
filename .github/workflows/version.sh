@@ -1,14 +1,11 @@
-
-# echo "{name}={value}" >> $GITHUB_RUN_NUMBER
+#!/bin/bash
 echo $GITHUB_RUN_NUMBER
-
-
- githubnumber=$GITHUB_RUN_NUMBER
+'githubnumber'=$GITHUB_RUN_NUMBER
 echo $RUNNER_NAME
 echo $i
 
 echo $githubnumber
-sed -i 's/AJIL/JOE/g' lib/constant/version.dart
+sed -i 's/AJIL/$githubnumber/g' lib/constant/version.dart
 
 
 
