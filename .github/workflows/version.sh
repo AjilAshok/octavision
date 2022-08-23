@@ -17,13 +17,13 @@ set -e
 
 file=$(cat pubspec.yaml)
 # echo $file
-# BUILD_NAME=$(echo $file | sed -ne 's/[^0-9]*\(\([0-9]\.\)\{0,4\}[0-9][^.]\).*/\1/p')
+BUILD_NAME=$(echo $file | sed -ne 's/[^0-9]*\(\([0-9]\.\)\{0,4\}[0-9][^.]\).*/\1/p')
 # echo $BUILD_NAME
 
 BUILD_NUMBER=$(git rev-list HEAD --count)
 echo $BUILD_NUMBER
 
-# echo "Building version ${BUILD_NAME} ${BUILD_NUMBER}"
+echo "Building version ${BUILD_NAME} ${BUILD_NUMBER}"
 
 # export BUILD_NAME="$BUILD_NAME"
 # export BUILD_NUMBER="$BUILD_NUMBER"
