@@ -11,7 +11,7 @@ class Version{
   
 
    static String? versionnumber="";
-   static String? dateandtime="Date";
+   static String? dateandtime="";
 
 // static const String buildnumber=String.fromEnvironment(g);
 }
