@@ -11,7 +11,8 @@ class Version{
   
 
    static String? versionnumber="";
-   static String? dateandtime="23-08-2022";
+   static String? dateandtime="23-08-2022  1:18:15 pm IST";
+   static String? buildnum="1.2.7";
 
-// static const String buildnumber=String.fromEnvironment(g);
+// static const String 1.2.7=String.fromEnvironment(g);
 }
