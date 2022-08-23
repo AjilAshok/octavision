@@ -16,11 +16,12 @@ sed -i "s/buildnumber/$githubnumber/g" lib/constant/version.dart
 set -e
 
 file=$(cat pubspec.yaml)
-echo $file['version']
+echo $file
 # BUILD_NAME=$(echo $file | sed -ne 's/[^0-9]*\(\([0-9]\.\)\{0,4\}[0-9][^.]\).*/\1/p')
 # echo $BUILD_NAME
 
-# BUILD_NUMBER=$(git rev-list HEAD --count)
+BUILD_NUMBER=$(git rev-list HEAD --count)
+echo BUILD_NUMBER
 
 # echo "Building version ${BUILD_NAME} ${BUILD_NUMBER}"
 
