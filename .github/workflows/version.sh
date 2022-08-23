@@ -6,7 +6,7 @@ echo $RUNNER_NAME
 
 echo $githubnumber
 
-echo $(date '+%Y-%m-%d')
+echo $(date '+%d-%m-%Y')
 sed -i "s/Versionnumber/$githubnumber/g" lib/constant/version.dart
 sed -i "s/Date/$date/g" lib/constant/version.dart
 
