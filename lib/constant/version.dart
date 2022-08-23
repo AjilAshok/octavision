@@ -10,6 +10,7 @@ import 'dart:io';
 class Version{
   
 
-   static String? versionnumber="";
+   static String? versionnumber="Versionnumber";
+   static String? dateandtime='Date';
 // static const String buildnumber=String.fromEnvironment(g);
 }
