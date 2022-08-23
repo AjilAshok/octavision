@@ -2,6 +2,7 @@
 
 githubnumber=$GITHUB_RUN_NUMBER
 echo $githubnumber
+echo 
 
 datetime=$(date '+%d-%m-%Y %r')
 echo $datetime
