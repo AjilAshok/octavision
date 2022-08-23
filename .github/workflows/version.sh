@@ -5,7 +5,7 @@ echo $RUNNER_NAME
 
 
 echo $githubnumber
-sed -i 's/AJIL/githubnumber/g' lib/constant/version.dart
+sed -i "s/Versionnumber/$githubnumber/g" lib/constant/version.dart
 
 
 
