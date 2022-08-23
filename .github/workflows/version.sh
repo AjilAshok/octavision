@@ -5,7 +5,7 @@ echo $RUNNER_NAME
 
 
 echo $githubnumber
-echo $date
+echo date
 
 sed -i "s/Versionnumber/$githubnumber/g" lib/constant/version.dart
 
