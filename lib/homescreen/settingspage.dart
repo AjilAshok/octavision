@@ -64,10 +64,10 @@ class _SettingsState extends State<Settings> {
             //     applicationIcon: Image.asset("assets/appicon1.jpeg"),
             //   ));
             // },
-            title: Text(
-              "Liscense",
-              style: TextStyle(fontSize: 25),
-            ),
+            // title: Text(
+            //   "Liscense",
+            //   style: TextStyle(fontSize: 25),
+            // ),
           )])));
   }
 
