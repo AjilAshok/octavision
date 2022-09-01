@@ -56,14 +56,14 @@ class _SettingsState extends State<Settings> {
             trailing: Icon(Icons.arrow_forward_ios),
           ),
           ListTile(
-            onTap: () {
-              Get.to(LicensePage(
-                applicationVersion: "1.0.0",
-                applicationLegalese: "Ocatvision",
-                applicationName: "Soul",
-                applicationIcon: Image.asset("assets/appicon1.jpeg"),
-              ));
-            },
+            // onTap: () {
+            //   Get.to(LicensePage(
+            //     applicationVersion: "1.0.0",
+            //     applicationLegalese: "Ocatvision",
+            //     applicationName: "Soul",
+            //     applicationIcon: Image.asset("assets/appicon1.jpeg"),
+            //   ));
+            // },
             title: Text(
               "Liscense",
               style: TextStyle(fontSize: 25),
