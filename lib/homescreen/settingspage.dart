@@ -1,22 +1,31 @@
-
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:get_time_ago/get_time_ago.dart';
+import 'package:intl/intl.dart';
 import 'package:octavision/constant/version.dart';
 
 import 'package:octavision/homescreen/widgets/contactpage.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
   Settings({Key? key}) : super(key: key);
-  String copytext = "octavision.t@gmail.com";
-  Version ver=Version();
-  // var gitnumber=gitnumber;
-  
 
   @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
+  String copytext = "octavision.t@gmail.com";
+
+  Version ver = Version();
+  bool isVisible = true;
+
+  // var gitnumber=gitnumber;
+  @override
   Widget build(BuildContext context) {
-    print(Version.versionnumber);
+   
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.grey,
@@ -30,80 +39,93 @@ class Settings extends StatelessWidget {
               color: Colors.black,
             )),
         elevation: 0,
-        title:  Text(Version.versionnumber.toString()
-          ,
+        title: Text(
+          Version.versionnumber.toString(),
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.black38,
       ),
-      body: Column(
-        children: [
-          const ListTile(
-            title: Text(
-              "About",
-              style: TextStyle(fontSize: 25),
+      body: GestureDetector(
+        onDoubleTap: versionvisible,
+        child: Container(
+          color: Colors.green,
+          child: Column(children: [
+            // Column(
+            //   children: [
+            GestureDetector(
+              onDoubleTap: () {
+                versionvisible();
+              },
+              child: const ListTile(
+                title: Text(
+                  "About",
+                  style: TextStyle(fontSize: 25),
+                ),
+                trailing: Icon(Icons.arrow_forward_ios),
+              ),
             ),
-            trailing: Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            onTap: () {
-              Get.to(LicensePage(
-                applicationVersion: "1.0.0",
-                applicationLegalese: "Ocatvision",
-                applicationName: "Soul",
-                applicationIcon: Image.asset("assets/appicon1.jpeg"),
-              ));
-            },
-            title: Text(
-              "Liscense",
-              style: TextStyle(fontSize: 25),
+            ListTile(
+              onTap: () {
+                Get.to(LicensePage(
+                  applicationVersion: "1.0.0",
+                  applicationLegalese: "Ocatvision",
+                  applicationName: "Soul",
+                  applicationIcon: Image.asset("assets/appicon1.jpeg"),
+                ));
+              },
+              title: Text(
+                "Liscense",
+                style: TextStyle(fontSize: 25),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios),
             ),
-            trailing: Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            onTap: () async {
-              //           showDialog(context: context, builder: (context)=>  AlertDialog(
-              //             title: const  Text("Contact us"),
-              //             content: Row(
-              //               children: [
-              //                 Text(copytext),
-              //                  IconButton(onPressed: (){
-              //                   FlutterClipboard.copy(copytext).then((value) {
-              //   _showSnackBar(context,"Text copied");
-              // });
-              //                  }, icon: Icon(Icons.copy))
-              //               ],
-              //             ),
-
-              //           ));
-
-              Get.to(ContactPage());
-              // try {
-              //   await des.add({"name": "name"}).then((value) => print("adfsn"));
-              // } catch (e) {
-              //   print(e);
-              // }
-            },
-            title: Text(
-              "Contact Us",
-              style: TextStyle(fontSize: 25),
+            ListTile(
+              onTap: () async {
+                Get.to(ContactPage());
+                // try {
+                //   await des.add({"name": "name"}).then((value) => print("adfsn"));
+                // } catch (e) {
+                //   print(e);
+                // }
+              },
+              title: const Text(
+                "Contact Us",
+                style: TextStyle(fontSize: 25),
+              ),
+              trailing: const Icon(Icons.arrow_forward_ios),
             ),
-            trailing: Icon(Icons.arrow_forward_ios),
-          ),
-          Spacer(),
-          Center(
-            child: Text(
-              "Developed By Octavision",
-              style: TextStyle(fontSize: 20),
-            ),
-          )
-        ],
+            const Spacer(),
+            Center(
+                child: Visibility(
+                    visible: isVisible,
+                    child: Text.rich(TextSpan(
+                        text: "Develped by flutter",
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            versionvisible();
+                          })))),
+            //   ],
+            // ),
+          ]),
+        ),
       ),
     ));
   }
 
-  void _showSnackBar(context, tex) {
-    var snack = SnackBar(content: Text(tex), duration: Duration(seconds: 2));
-    ScaffoldMessenger.of(context).showSnackBar(snack);
+  void versionvisible() {
+    setState(() {
+    const dateTimeString = '2020-07-17T03:18:31.177769-04:00';
+  final dateTime = DateTime.parse(dateTimeString);
+
+  final format = DateFormat('HH:mm');
+  final now =DateTime.now();
+  print(now);
+
+  final clockString = format.format(dateTime.toLocal());
+
+  print(clockString); // 07:18 AM
+    
+    });
+
   }
 }

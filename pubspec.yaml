@@ -57,6 +57,8 @@ dependencies:
   animated_text_kit: ^4.2.2
   
   http: ^0.13.4
+  intl: ^0.17.0
+  get_time_ago: ^1.1.5
  
 
 
