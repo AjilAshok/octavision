@@ -40,8 +40,8 @@ class Settings extends StatelessWidget {
         children: [
           const ListTile(
             title: Text(
-              "About",
-              style: TextStyle(fontSize: 25),
+              "About dffdsf",
+              style: TextStyle(fontSize: 45),
             ),
             trailing: Icon(Icons.arrow_forward_ios),
           ),
