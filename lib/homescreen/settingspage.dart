@@ -76,13 +76,13 @@ class _SettingsState extends State<Settings> {
     const dateTimeString = '2020-07-17T03:18:31.177769-04:00';
   final dateTime = DateTime.parse(dateTimeString);
 
-  final format = DateFormat('HH:mm');
-  final now =DateTime.now();
-  print(now);
+  // final format = DateFormat('HH:mm');
+  // final now =DateTime.now();
+  // print(now);
 
-  final clockString = format.format(dateTime.toLocal());
+  // final clockString = format.format(dateTime.toLocal());
 
-  print(clockString); // 07:18 AM
+  // print(clockString); // 07:18 AM
     
     });
 
