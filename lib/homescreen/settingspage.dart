@@ -58,10 +58,10 @@ class _SettingsState extends State<Settings> {
               },
               child: const ListTile(
                 title: Text(
-                  "About",
+                  "About hhhhhj",
                   style: TextStyle(fontSize: 25),
                 ),
-                trailing: Icon(Icons.arrow_forward_ios),
+                trailing: Icon(Icons.architecture_outlined),
               ),
             ),
             ListTile(
