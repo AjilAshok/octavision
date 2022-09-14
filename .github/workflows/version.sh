@@ -19,16 +19,16 @@ echo $BUILD_NAME
 BUILD_TIME=$(date +'%d\/%m\/%Y %H\:%M\:%S')
 
 
-# if [ "$(uname)" == "Darwin" ]; then
-#     # sed -i '' "s/{versionNumber}/$BUILD_NUMBER/g" lib/constants/version.dart
-#     # sed -i '' "s/{Date}/$DATE_AND_TIME/g" lib/constants/version.dart
-#     # sed -i '' "s/{buildName}/$GIT_HUB_NUMBER/g" lib/constants/version.dart
+if [ "$(uname)" == "Darwin" ]; then
+    # sed -i '' "s/{versionNumber}/$BUILD_NUMBER/g" lib/constants/version.dart
+    # sed -i '' "s/{Date}/$DATE_AND_TIME/g" lib/constants/version.dart
+    # sed -i '' "s/{buildName}/$GIT_HUB_NUMBER/g" lib/constants/version.dart
 
-# sed -i '' "s/Versionnumber/$buildnumber/g" lib/constant/version.dart
-# sed -i '' "s/buildnumber/$githubnumber/g" lib/constant/version.dart
-# sed -i '' "s/timeadded/$T/g" lib/constant/version.dart
+sed -i '' "s/Versionnumber/$buildnumber/g" lib/constant/version.dart
+sed -i '' "s/buildnumber/$githubnumber/g" lib/constant/version.dart
+sed -i '' "s/timeadded/$T/g" lib/constant/version.dart
 
-if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
    sed -i "s/Versionnumber/$buildnumber/g" lib/constant/version.dart
    sed -i "s/buildnumber/$githubnumber/g" lib/constant/version.dart
    sed -i "s/timeadded/$T/g" lib/constant/version.dart
