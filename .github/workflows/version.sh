@@ -33,7 +33,7 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
    sed -i "s/buildnumber/$githubnumber/g" lib/constant/version.dart
    sed -i "s/timeadded/$T/g" lib/constant/version.dart
 
-# fi
+fi
 
 
 
