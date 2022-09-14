@@ -28,7 +28,7 @@ BUILD_TIME=$(date +'%d\/%m\/%Y %H\:%M\:%S')
 # sed -i '' "s/buildnumber/$githubnumber/g" lib/constant/version.dart
 # sed -i '' "s/timeadded/$T/g" lib/constant/version.dart
 
-# elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
    sed -i "s/Versionnumber/$buildnumber/g" lib/constant/version.dart
    sed -i "s/buildnumber/$githubnumber/g" lib/constant/version.dart
    sed -i "s/timeadded/$T/g" lib/constant/version.dart
